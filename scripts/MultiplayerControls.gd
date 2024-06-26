@@ -1,12 +1,10 @@
+# multiplayer code is dirvative and enhanced from this guys code: sustainablelab 
 extends Node
-#
-#signal connected
-#signal disconnected
 
 var num_players = Input.get_connected_joypads().size()
 var players: Array = []
 var input_maps: Array = []
-var keyboard: bool = false # For keyboard use
+var keyboard: bool = true
 
 func _ready():
 	print("Number of Controllers Connected: ", num_players)
@@ -14,34 +12,28 @@ func _ready():
 	# Connect to the signal that detects when a joystick connects
 	var _new_connection: int
 	_new_connection = Input.joy_connection_changed.connect(_on_joy_connection_changed)
-	#if _new_connection != 0:
-		#print("Error {e} connecting `Input` signal `joy_connection_changed`.".format({"e": _new_connection}))
-	#else:
-		#print("No player connected")
+	if _new_connection != 0:
+		print("Error {e} connecting `Input` signal `joy_connection_changed`.".format({"e": _new_connection}))
+	else:
+		print("No Controller connected")
+		
+	add_player(0)
+	print("Added default player")
 
 func _on_joy_connection_changed(device: int, connected: bool):
-	if connected:
-		# Update number of players to number of connected joysticks.
+	if connected:		
 		num_players = Input.get_connected_joypads().size()
-		print("Connected device {d}.".format({"d":device}))
+		print("Connected device {d}. keyboard: {k}".format({"d":device, "k":keyboard}))
 		# Add the player to the world as device number for  player index into the array of players.
 		add_player(device)
 		print("Added player index {d} to the world.".format({"d":device}))
-		print(players)
 	else:
-		# Do not change the number of players when a player disconnects.
+#TODO
 		remove_player(device)
 		print("Removed player index {d} from the world.".format({"d":device}))
 		print("Disconnected device {d}.".format({"d":device}))
 
 func remove_player(player_index: int) -> void:
-	# TODO: Remove the player. Or show in some way that the
-	# player is inactive.
-	# For now I leave the disconnected player on screen and
-	# do nothing. The player is technically still "in play" and
-	# other players can interact with it. But the player cannot
-	# be controlled because the joystick is disconnected.
-	# When the joystick reconnects, control is restored.
 	emit_signal("disconnected", players[player_index].player_name)
 	print("Player Removed: ", players[player_index].player_name)
 
@@ -50,72 +42,63 @@ func add_player(player_index: int) -> void:
 	
 	#for if a player disconnects and reconnect controller they keep their player number
 	if player_index < players.size():
-		# TODO: add code to revive old player.
-		# I'll need to "revive" once I've coded "removal."
-		# For now I leave the disconnected player on screen and
-		# do nothing, so there is nothing to do to "revive" the
-		# player. They reconnect their joystick and they can move
-		# again.
-		emit_signal("connected", players[player_index].player_name)
-		print("Player added: ", players[player_index].player_name)
-		return
+		if keyboard:
+			keyboard = !keyboard
+			players.pop_front()
+			input_maps.pop_front()
+		else:
+			# TODO: add code to revive old player.
+			# I'll need to "revive" once I've coded "removal."
+			# For now I leave the disconnected player on screen and
+			# do nothing, so there is nothing to do to "revive" the
+			# player. They reconnect their joystick and they can move
+			# again.
+			emit_signal("connected", players[player_index].player_name, "keyboard: ", keyboard)
+			return
 	
 	# Instantiate a new player and appends to players list
 	var Player = load("res://scenes/Player.tscn")
 	var player = Player.instantiate()
-	#get_tree().get_first_node_in_group("World").add_child(player)
 	players.append(player)
 
-	# Create an input_map dict for this player's joystick/keyboard.
-	input_maps.append({
-		"ui_right{n}".format({"n":player_index}): Vector2.RIGHT,
-		"ui_left{n}".format({"n":player_index}): Vector2.LEFT,
-		"ui_up{n}".format({"n":player_index}): Vector2.UP,
-		"ui_down{n}".format({"n":player_index}): Vector2.DOWN,
-		
-		"ui_rightR{n}".format({"n":player_index}): Vector2.RIGHT,
-		"ui_leftR{n}".format({"n":player_index}): Vector2.LEFT,
-		"ui_upR{n}".format({"n":player_index}): Vector2.UP,
-		"ui_downR{n}".format({"n":player_index}): Vector2.DOWN,
-		
-		"RIGHT_action{n}".format({"n":player_index}): JOY_BUTTON_B,
-		"BOTTOM_action{n}".format({"n":player_index}): JOY_BUTTON_A,
-		"LEFT_action{n}".format({"n":player_index}): JOY_BUTTON_X,
-		"TOP_action{n}".format({"n":player_index}): JOY_BUTTON_Y,
-		
-		"menu_action{n}".format({"n":player_index}): JOY_BUTTON_START,
-		"back_action{n}".format({"n":player_index}): JOY_BUTTON_BACK,
-		
-		"D_LEFT_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_LEFT,
-		"D_RIGHT_action{n}".format({"n":player_index}):JOY_BUTTON_DPAD_RIGHT,
-		"D_UP_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_UP, 
-		"D_DOWN_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_DOWN, 
-		
-		"R_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_RIGHT,
-		"L_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_LEFT,
-
-		"R_Shoulder_action{n}".format({"n":player_index}): JOY_BUTTON_RIGHT_SHOULDER,
-		"L_Shoulder_action{n}".format({"n":player_index}): JOY_BUTTON_LEFT_SHOULDER,
-		})
-	print("Input Map: ", input_maps[player_index])
-	
-	# Assign the input_map to this player.
-	player.ui_inputs = input_maps[player_index]
-
 	if not keyboard:
-		# Assign the joystick device number to this player.
-		player.device_num = player_index
+		print("Setting up Gamepad Controls")
+		# Create an input_map dict for this player's joystick/keyboard.
+		input_maps.append({
+			"ui_right{n}".format({"n":player_index}): Vector2.RIGHT,
+			"ui_left{n}".format({"n":player_index}): Vector2.LEFT,
+			"ui_up{n}".format({"n":player_index}): Vector2.UP,
+			"ui_down{n}".format({"n":player_index}): Vector2.DOWN,
+			
+			"ui_rightR{n}".format({"n":player_index}): Vector2.RIGHT,
+			"ui_leftR{n}".format({"n":player_index}): Vector2.LEFT,
+			"ui_upR{n}".format({"n":player_index}): Vector2.UP,
+			"ui_downR{n}".format({"n":player_index}): Vector2.DOWN,
+			
+			"RIGHT_action{n}".format({"n":player_index}): JOY_BUTTON_B,
+			"BOTTOM_action{n}".format({"n":player_index}): JOY_BUTTON_A,
+			"LEFT_action{n}".format({"n":player_index}): JOY_BUTTON_X,
+			"TOP_action{n}".format({"n":player_index}): JOY_BUTTON_Y,
+			
+			"menu_action{n}".format({"n":player_index}): JOY_BUTTON_START,
+			"back_action{n}".format({"n":player_index}): JOY_BUTTON_BACK,
+			
+			"D_LEFT_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_LEFT,
+			"D_RIGHT_action{n}".format({"n":player_index}):JOY_BUTTON_DPAD_RIGHT,
+			"D_UP_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_UP, 
+			"D_DOWN_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_DOWN, 
+			
+			"R_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_RIGHT,
+			"L_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_LEFT,
 
-		# Edit the InputMap to match the names used in the input_map assignments.
-		# For example, default InputMap has name "ui_left".
-		# I use the same default names but with a device number suffix.
-		# So "ui_left" becomes "ui_left0", "ui_left1", etc.
-		# These are called "actions". The joypad motion that triggers
-		# the action is called an "action event".
-
+			"R_Shoulder_action{n}".format({"n":player_index}): JOY_BUTTON_RIGHT_SHOULDER,
+			"L_Shoulder_action{n}".format({"n":player_index}): JOY_BUTTON_LEFT_SHOULDER,
+		})
+		
+		# see this for GODOT supported Inputs https://docs.godotengine.org/en/4.2/classes/class_@globalscope.html
 		#
 		#  Left Joy Stick
-		#  see this for GODOT supported Inputs https://docs.godotengine.org/en/4.2/classes/class_@globalscope.html
+		#  
 		var right_action: String
 		var right_action_event: InputEventJoypadMotion
 		right_action = "ui_right{n}".format({"n":player_index})
@@ -351,52 +334,86 @@ func add_player(player_index: int) -> void:
 		InputMap.action_add_event(L_Shoulder_action, L_Shoulder_event)
 
 	else:
+		player.keyboard = true
+		print("Setting up Keyboard Controls")
+		input_maps.append({
+			"ui_right{n}".format({"n":player_index}): Vector2.RIGHT,
+			"ui_left{n}".format({"n":player_index}): Vector2.LEFT,
+			"ui_up{n}".format({"n":player_index}): Vector2.UP,
+			"ui_down{n}".format({"n":player_index}): Vector2.DOWN,
+			
+			"RIGHT_action{n}".format({"n":player_index}): JOY_BUTTON_B,
+			"BOTTOM_action{n}".format({"n":player_index}): JOY_BUTTON_A,
+			"LEFT_action{n}".format({"n":player_index}): JOY_BUTTON_X,
+			"TOP_action{n}".format({"n":player_index}): JOY_BUTTON_Y,
+			
+			"menu_action{n}".format({"n":player_index}): KEY_ESCAPE,
+			"back_action{n}".format({"n":player_index}): JOY_BUTTON_BACK,
+			
+			"D_LEFT_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_LEFT,
+			"D_RIGHT_action{n}".format({"n":player_index}):JOY_BUTTON_DPAD_RIGHT,
+			"D_UP_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_UP, 
+			"D_DOWN_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_DOWN, 
+			
+			"R_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_RIGHT,
+			"L_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_LEFT,
+
+			"R_Shoulder_action{n}".format({"n":player_index}): JOY_BUTTON_RIGHT_SHOULDER,
+			"L_Shoulder_action{n}".format({"n":player_index}): JOY_BUTTON_LEFT_SHOULDER,
+		})
+
 		# Use keyboard
-		var arrows: Dictionary = {
-			"key_right": KEY_RIGHT,
-			"key_left":  KEY_LEFT,
-			"key_up":    KEY_UP,
-			"key_down":  KEY_DOWN,
-			}
 		var wasd: Dictionary = {
-			"key_right": KEY_D,
-			"key_left":  KEY_A,
-			"key_up":    KEY_W,
-			"key_down":  KEY_S,
+			"ui_rightK{n}".format({"n":player_index}): KEY_D,
+			"ui_leftK{n}".format({"n":player_index}):  KEY_A,
+			"ui_upK{n}".format({"n":player_index}):    KEY_W,
+			"ui_downK{n}".format({"n":player_index}):  KEY_S,
+			}
+		var arrows: Dictionary = {
+			"ui_rightK{n}".format({"n":player_index}): KEY_RIGHT,
+			"ui_leftK{n}".format({"n":player_index}):  KEY_LEFT,
+			"ui_upK{n}".format({"n":player_index}):    KEY_UP,
+			"ui_downK{n}".format({"n":player_index}):  KEY_DOWN,
 			}
 		var keymaps: Dictionary = {
-			0: arrows,
-			1: wasd,
+			0: wasd,
+			1: arrows,
 			}
 
 		var right_action: String
 		var right_action_event: InputEventKey
-		right_action = "ui_right{n}".format({"n":player_index})
+		right_action = "ui_rightK{n}".format({"n":player_index})
 		InputMap.add_action(right_action)
 		right_action_event = InputEventKey.new()
-		right_action_event.keycode = keymaps[player_index]["key_right"]
+		right_action_event.keycode = keymaps[player_index]["ui_rightK{n}".format({"n":player_index})]
 		InputMap.action_add_event(right_action, right_action_event)
 
 		var left_action: String
 		var left_action_event: InputEventKey
-		left_action = "ui_left{n}".format({"n":player_index})
+		left_action = "ui_leftK{n}".format({"n":player_index})
 		InputMap.add_action(left_action)
 		left_action_event = InputEventKey.new()
-		left_action_event.keycode = keymaps[player_index]["key_left"]
+		left_action_event.keycode = keymaps[player_index]["ui_leftK{n}".format({"n":player_index})]
 		InputMap.action_add_event(left_action, left_action_event)
 
 		var up_action: String
 		var up_action_event: InputEventKey
-		up_action = "ui_up{n}".format({"n":player_index})
+		up_action = "ui_upK{n}".format({"n":player_index})
 		InputMap.add_action(up_action)
 		up_action_event = InputEventKey.new()
-		up_action_event.keycode = keymaps[player_index]["key_up"]
+		up_action_event.keycode = keymaps[player_index]["ui_upK{n}".format({"n":player_index})]
 		InputMap.action_add_event(up_action, up_action_event)
 
 		var down_action: String
 		var down_action_event: InputEventKey
-		down_action = "ui_down{n}".format({"n":player_index})
+		down_action = "ui_downK{n}".format({"n":player_index})
 		InputMap.add_action(down_action)
 		down_action_event = InputEventKey.new()
-		down_action_event.keycode = keymaps[player_index]["key_down"]
+		down_action_event.keycode = keymaps[player_index]["ui_downK{n}".format({"n":player_index})]
 		InputMap.action_add_event(down_action, down_action_event)
+
+
+	print("Input Map: ", input_maps[player_index])
+	# Assign the player ids to the player object.
+	player.ui_inputs = input_maps[player_index]
+	player.device_num = player_index
