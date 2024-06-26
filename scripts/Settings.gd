@@ -1,11 +1,13 @@
 extends Node
 
+var master = 0.5
+var sfx = 0.5
+var music = 0.5
 
-# Called when the node enters the scene tree for the first time.
+var in_menu = false
+var menu_user = -1
+
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), master)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), music)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), sfx)
