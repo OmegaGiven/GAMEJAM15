@@ -6,22 +6,40 @@ var players: Array = []
 var input_maps: Array = []
 var keyboard: bool = true
 
+signal controller_switch
+
 func _ready():
 	print("Number of Controllers Connected: ", num_players)
 	
-	# Connect to the signal that detects when a joystick connects
+	# Connect to the signal that detects when a joystick connects with only default palyer
+	controller_switch.connect(_switch_controller)
+	
 	var _new_connection: int
 	_new_connection = Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	if _new_connection != 0:
 		print("Error {e} connecting `Input` signal `joy_connection_changed`.".format({"e": _new_connection}))
 	else:
 		print("No Controller connected")
-		
+
 	add_player(0)
 	print("Added default player")
 
+
+func _switch_controller():
+	if players[0].keyboard:
+		print("reinstantiating Player 1 to controller")
+		players[0].keyboard = false
+		remove_controls_for_device(0)
+		add_controls_for_device(0, keyboard)
+		emit_signal("controller_switch")
+	
+
 func _on_joy_connection_changed(device: int, connected: bool):
-	if connected:		
+	if connected:
+		# if only keyboard player atached delete delete that player and reinstantiate as gamepad
+		keyboard = false
+		_switch_controller()
+		
 		num_players = Input.get_connected_joypads().size()
 		print("Connected device {d}. keyboard: {k}".format({"d":device, "k":keyboard}))
 		# Add the player to the world as device number for  player index into the array of players.
@@ -59,8 +77,21 @@ func add_player(player_index: int) -> void:
 	# Instantiate a new player and appends to players list
 	var Player = load("res://scenes/Player.tscn")
 	var player = Player.instantiate()
+	player.device_num = player_index
+	player.keyboard = keyboard
 	players.append(player)
+	add_controls_for_device(player_index, keyboard) #keyboard is redundent until we have a multiplayer controller assignment ui
 
+func remove_controls_for_device(player_index):
+	for x in input_maps[player_index]:
+		print("removing controls: {a}, {b}".format({"a": x, "b": input_maps[0].get(x)}) )
+		InputMap.erase_action(x)
+		for y in InputMap.action_get_events(x):
+			InputMap.action_erase_event(x, y)
+	input_maps.remove_at(player_index)
+	return true
+
+func add_controls_for_device(player_index: int, keyboard):
 	if not keyboard:
 		print("Setting up Gamepad Controls")
 		# Create an input_map dict for this player's joystick/keyboard.
@@ -334,7 +365,6 @@ func add_player(player_index: int) -> void:
 		InputMap.action_add_event(L_Shoulder_action, L_Shoulder_event)
 
 	else:
-		player.keyboard = true
 		print("Setting up Keyboard Controls")
 		input_maps.append({
 			"ui_right{n}".format({"n":player_index}): Vector2.RIGHT,
@@ -342,10 +372,10 @@ func add_player(player_index: int) -> void:
 			"ui_up{n}".format({"n":player_index}): Vector2.UP,
 			"ui_down{n}".format({"n":player_index}): Vector2.DOWN,
 			
-			"RIGHT_action{n}".format({"n":player_index}): JOY_BUTTON_B,
-			"BOTTOM_action{n}".format({"n":player_index}): JOY_BUTTON_A,
-			"LEFT_action{n}".format({"n":player_index}): JOY_BUTTON_X,
-			"TOP_action{n}".format({"n":player_index}): JOY_BUTTON_Y,
+			"RIGHT_action{n}".format({"n":player_index}): KEY_CTRL,
+			"BOTTOM_action{n}".format({"n":player_index}): KEY_SPACE,
+			"LEFT_action{n}".format({"n":player_index}): KEY_R,
+			"TOP_action{n}".format({"n":player_index}): KEY_E,
 			
 			"menu_action{n}".format({"n":player_index}): KEY_ESCAPE,
 			"back_action{n}".format({"n":player_index}): JOY_BUTTON_BACK,
@@ -415,5 +445,5 @@ func add_player(player_index: int) -> void:
 
 	print("Input Map: ", input_maps[player_index])
 	# Assign the player ids to the player object.
-	player.ui_inputs = input_maps[player_index]
-	player.device_num = player_index
+	#player.ui_inputs = input_maps[player_index] #do not need this script since we do keyboard detection based on device ID and not trigger of controls.
+

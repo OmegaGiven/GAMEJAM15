@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://doc1m5kp551ac"]
+
+[ext_resource type="Script" path="res://scripts/ViewportBuilder.gd" id="1_4ansm"]
+
+[node name="Viewport Builder" type="GridContainer"]
+script = ExtResource("1_4ansm")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport2"]
+position = Vector2(960, 0)
