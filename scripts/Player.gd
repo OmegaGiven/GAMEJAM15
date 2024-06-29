@@ -6,14 +6,8 @@ var deadzone = 0.1
 const SPEED = 300.0
 var keyboard = false
 
-var ui_inputs = {
-	"ui_right"	: Vector2.RIGHT,
-	"ui_left"	: Vector2.LEFT,
-	"ui_up"		: Vector2.UP,
-	"ui_down"	: Vector2.DOWN,
-}
-
 func movement():
+	# produces velocity by returning Vector2D
 	var input_direction
 	if keyboard:
 		input_direction = Input.get_vector(	"ui_leftK{n}".format({"n":device_num}),
@@ -28,6 +22,11 @@ func movement():
 											"ui_down{n}".format({"n":device_num})
 											)
 	velocity = input_direction * SPEED
+	return velocity
+
+
+func camera_toggle():
+	pass
 
 
 func _physics_process(delta):
