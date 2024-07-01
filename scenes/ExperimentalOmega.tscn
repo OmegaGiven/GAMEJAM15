@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7jy5qke65pgd"]
 
-[ext_resource type="Script" path="res://scenes/ExperimentalOmega.gd" id="1_je5yk"]
+[ext_resource type="Script" path="res://scripts/ExperimentalOmega.gd" id="1_je5yk"]
 [ext_resource type="PackedScene" uid="uid://iofifbdvmwp7" path="res://scenes/Level.tscn" id="2_n5ocr"]
 [ext_resource type="Texture2D" uid="uid://b2lj288ciqtp2" path="res://assets/fantasy background.jpg" id="3_3r7qi"]
 
