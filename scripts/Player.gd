@@ -5,6 +5,7 @@ var player_name = 'player'
 var deadzone = 0.1
 const SPEED = 300.0
 var keyboard = false
+var free_cam = false
 
 func movement():
 	# produces velocity by returning Vector2D
@@ -39,16 +40,21 @@ func direction_manager():
 
 
 
-func _physics_process(delta):
-	# if not in camera mode
-	movement()
+func _physics_process(_delta):
+	if not free_cam:
+		movement()
 	move_and_slide()
 
-func _process(delta):
-	# if camera button is pressed:
-	# toggle camera mode
+func _input(event):
+	#this will error until I find key for it but on keyboard as its for controller currently
+	if event.is_action_released("D_DOWN_action{n}".format({"n":device_num})) :
+		# toggle free camera mode
+		free_cam = !free_cam
+		print("Player {n} entered freecam".format({"n": device_num}))
+
+
+func _process(_delta):
 	
 	#if camera mode
 	# move camera()
-	
 	pass
