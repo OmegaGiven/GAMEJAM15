@@ -16,11 +16,9 @@ func _ready():
 	
 	var _new_connection: int
 	_new_connection = Input.joy_connection_changed.connect(_on_joy_connection_changed)
-	if _new_connection != 0:
-		print("Error {e} connecting `Input` signal `joy_connection_changed`.".format({"e": _new_connection}))
-	else:
-		print("No Controller connected")
-
+	
+	if num_players > 0:
+		keyboard = false
 	add_player(0)
 	print("Added default player")
 
@@ -44,7 +42,10 @@ func _on_joy_connection_changed(device: int, connected: bool):
 		print("Connected device {d}. keyboard: {k}".format({"d":device, "k":keyboard}))
 		# Add the player to the world as device number for  player index into the array of players.
 		add_player(device)
-		print("Added player index {d} to the world.".format({"d":device}))
+		#print("Added player index {d} to the world.".format({"d":device}))
+		
+		SplitScreenFunctionality.add_splitscreen_to_scene()
+		
 	else:
 #TODO
 		remove_player(device)
@@ -71,7 +72,7 @@ func add_player(player_index: int) -> void:
 			# do nothing, so there is nothing to do to "revive" the
 			# player. They reconnect their joystick and they can move
 			# again.
-			emit_signal("connected", players[player_index].player_name, "keyboard: ", keyboard)
+			#emit_signal("connected", players[player_index].player_name, "keyboard: ", keyboard)
 			return
 	
 	# Instantiate a new player and appends to players list
@@ -91,8 +92,8 @@ func remove_controls_for_device(player_index):
 	input_maps.remove_at(player_index)
 	return true
 
-func add_controls_for_device(player_index: int, keyboard):
-	if not keyboard:
+func add_controls_for_device(player_index: int, kb):
+	if not kb:
 		print("Setting up Gamepad Controls")
 		# Create an input_map dict for this player's joystick/keyboard.
 		input_maps.append({
@@ -286,7 +287,7 @@ func add_controls_for_device(player_index: int, keyboard):
 		#
 		var D_Left_action: String
 		var D_Left_event: InputEventJoypadButton
-		D_Left_action = "D_Left_action{n}".format({"n":player_index})
+		D_Left_action = "D_LEFT_action{n}".format({"n":player_index})
 		InputMap.add_action(D_Left_action)
 		D_Left_event = InputEventJoypadButton.new()
 		D_Left_event.device = player_index
@@ -295,7 +296,7 @@ func add_controls_for_device(player_index: int, keyboard):
 		
 		var D_Right_action: String
 		var D_Right_event: InputEventJoypadButton
-		D_Right_action = "D_Right_action{n}".format({"n":player_index})
+		D_Right_action = "D_RIGHT_action{n}".format({"n":player_index})
 		InputMap.add_action(D_Right_action)
 		D_Right_event = InputEventJoypadButton.new()
 		D_Right_event.device = player_index
@@ -313,7 +314,7 @@ func add_controls_for_device(player_index: int, keyboard):
 		
 		var D_Down_action: String
 		var D_Down_event: InputEventJoypadButton
-		D_Down_action = "D_Down_action{n}".format({"n":player_index})
+		D_Down_action = "D_DOWN_action{n}".format({"n":player_index})
 		InputMap.add_action(D_Down_action)
 		D_Down_event = InputEventJoypadButton.new()
 		D_Down_event.device = player_index
