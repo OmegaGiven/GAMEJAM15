@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MultiplayerControls="*res://scripts/MultiplayerControls.gd"
-Settings="*res://scripts/Settings.gd"
-SplitScreenFunctionality="*res://scripts/SplitScreenFunctionality.gd"
+MultiplayerControls="*res://scripts/global scripts/MultiplayerControls.gd"
+Settings="*res://scripts/global scripts/Settings.gd"
+SplitScreenFunctionality="*res://scripts/global scripts/SplitScreenFunctionality.gd"
 
 [display]
 

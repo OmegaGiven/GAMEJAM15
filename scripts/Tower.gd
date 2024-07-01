@@ -1,7 +1,6 @@
-extends Node
+extends Node2D
 
-var BuiltCameras = []
-
+var Health = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,8 +9,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#for player in MultiplayerControls.players:
-		#if player in self.get_parent().players_in_scene:
-			#var NewCamera2D = Camera2D.new()
-			#var newCamera2D = NewCamera2D.instantiate()
+	# detect enemy()
 	pass
+
+
+func detect_enemy():
+	#if enemy collidable enters area 2d
+		# fire
+	pass
+

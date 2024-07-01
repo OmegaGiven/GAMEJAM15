@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://iofifbdvmwp7"]
+[gd_scene load_steps=2 format=3 uid="uid://iofifbdvmwp7"]
+
+[ext_resource type="Texture2D" uid="uid://b2lj288ciqtp2" path="res://assets/fantasy background.jpg" id="1_g5ias"]
 
 [node name="Level" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_g5ias")
+metadata/_edit_use_anchors_ = true
