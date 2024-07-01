@@ -25,10 +25,30 @@ func movement():
 	return velocity
 
 
-func camera_toggle():
+func move_camera():
+	#TODO
+	# get camera for player will setup global for this
+	# turn vector movement to translate camera
+	# include code to manipulate camera scale with right stick
+	# include rotation if we deem necessary
+	pass
+
+func direction_manager():
+	#TODO get animation direction and apply to player sprite
 	pass
 
 
+
 func _physics_process(delta):
+	# if not in camera mode
 	movement()
 	move_and_slide()
+
+func _process(delta):
+	# if camera button is pressed:
+	# toggle camera mode
+	
+	#if camera mode
+	# move camera()
+	
+	pass
