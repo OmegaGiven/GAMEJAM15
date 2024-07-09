@@ -26,6 +26,23 @@ SplitScreenFunctionality="*res://scripts/global scripts/SplitScreenFunctionality
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Background"
+2d_render/layer_3="World Static"
+2d_render/layer_4="World Objects"
+2d_render/layer_5="Enemies"
+2d_render/layer_6="Towers"
+2d_render/layer_7="NPCs"
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Background"
+2d_physics/layer_3="World Static"
+2d_physics/layer_4="World Objects"
+2d_physics/layer_5="Enemies"
+2d_physics/layer_6="Towers"
+2d_physics/layer_7="NPCs"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

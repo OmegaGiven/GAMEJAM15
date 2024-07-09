@@ -5,7 +5,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ioo0x"]
 radius = 91.0494
 
-[node name="Tower" type="Node2D"]
+[node name="Tower" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 125
+gravity_scale = 0.0
 script = ExtResource("1_1ct7m")
 
 [node name="ColorRect" type="ColorRect" parent="."]

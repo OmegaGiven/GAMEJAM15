@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 @export var device_num = 0
 var player_name = 'player'
 var deadzone = 0.1
@@ -8,7 +9,19 @@ var keyboard = false
 var free_cam = false
 var MAX_ZOOM = Vector2(5,5)
 var MIN_ZOOM = Vector2(0.25, 0.25)
-var ZOOM_SPEED = 0.1
+const ZOOM_SPEED = 0.1
+var in_build_menu = false
+var in_placement_mode = false #this will allow you to be in a free cam mode to place the tower centered on camera
+var resources: int = 100
+var owned_towers = []
+
+var BuildMenu = load("res://scenes/BuildMenu.tscn")
+var buildmenu = BuildMenu.instantiate()
+
+#func _ready():
+	#SplitScreenFunctionality.player_characters[device_num]["viewport"].add_child(buildmenu)
+	#SplitScreenFunctionality.player_characters[device_num]["viewport"].get_node(buildmenu).hide()
+
 
 func movement():
 	# produces velocity by returning Vector2D
@@ -41,7 +54,6 @@ func direction_manager():
 	pass
 
 
-
 func _physics_process(_delta):
 	if not free_cam:
 		velocity = movement()
@@ -52,28 +64,56 @@ func _input(event):
 	if event.is_action_released("D_DOWN_action{n}".format({"n":device_num})):
 		# toggle free camera mode
 		free_cam = !free_cam
+		velocity = Vector2.ZERO
 		if free_cam:
 			print("Player {n} entered freecam".format({"n": device_num}))
 		else:
 			print("Player {n} exited freecam".format({"n": device_num}))
-	
+
+	# Open X Craft Menu
+	if event.is_action_pressed("LEFT_action{n}".format({"n":device_num})):
+		toggle_build_menu()
+
 	## zoom Camera (this is glitchy as its only upon movement of joystick but not holding the joystick in position)
 	#if event.is_action("ui_upR{n}".format({"n":device_num})) or event.is_action("ui_downR{n}".format({"n":device_num})):
 		#var zoom = SplitScreenFunctionality.player_characters[device_num]["camera"].zoom - (Vector2(event.axis_value, event.axis_value) * 0.1)
 		#if zoom < MAX_ZOOM and zoom > MIN_ZOOM:
 			#SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom
 
+func toggle_build_menu():
+		if !in_build_menu:
+			in_build_menu = !in_build_menu
+			print("Opening Crafting Menu")
+			buildmenu.Btype = "LEFT"
+			buildmenu.player = self
+			SplitScreenFunctionality.player_characters[device_num]["viewport"].add_child(buildmenu)
+			#SplitScreenFunctionality.player_characters[device_num]["viewport"].get_node(buildmenu).show()
+		else:
+			in_build_menu = !in_build_menu
+			buildmenu.Btype = null
+			SplitScreenFunctionality.player_characters[device_num]["viewport"].remove_child(buildmenu)
+			#SplitScreenFunctionality.player_characters[device_num]["viewport"].get_node(buildmenu).hide()
+			print("Closing Crafting Menu")
 
 func _process(_delta):
-	if free_cam:
+	# zoom Camera "smoothish"
+	if Input.is_action_pressed("R_Shoulder_action{n}".format({"n":device_num})):
+		var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x + ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y + ZOOM_SPEED)
+		if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
+			SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
+	if Input.is_action_pressed("L_Shoulder_action{n}".format({"n":device_num})):
+		var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x - ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y - ZOOM_SPEED)
+		if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
+			SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
+#old zoom method using joystick
+	#if Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y) > deadzone or Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y) < -deadzone:
+		#var zoom = Vector2(Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y), Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y))
+		#var zoom_check = SplitScreenFunctionality.player_characters[device_num]["camera"].zoom + (ZOOM_SPEED * zoom)
+		#if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
+			#SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
+			
+	if free_cam or in_placement_mode:
 		move_camera()
 	else:
 		SplitScreenFunctionality.player_characters[device_num]["camera"].position = self.position
-
-	# zoom Camera "smoothish"
-	if Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y) > deadzone or Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y) < -deadzone:
-		var zoom = Vector2(Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y), Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y))
-		var zoom_check = SplitScreenFunctionality.player_characters[device_num]["camera"].zoom + (ZOOM_SPEED * zoom)
-		if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
-			SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
 

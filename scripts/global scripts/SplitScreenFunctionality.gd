@@ -46,4 +46,4 @@ func size():
 		return null
 	print("size of each split screen: {x}, {y}".format({"x":x, "y":y}))
 	return [x, y]
-	
+

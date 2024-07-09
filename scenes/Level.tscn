@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://iofifbdvmwp7"]
+[gd_scene load_steps=4 format=3 uid="uid://iofifbdvmwp7"]
 
 [ext_resource type="Texture2D" uid="uid://b2lj288ciqtp2" path="res://assets/fantasy background.jpg" id="1_g5ias"]
+[ext_resource type="PackedScene" uid="uid://dlu2scs1lvef7" path="res://scenes/Tower.tscn" id="2_s3ok6"]
+[ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Enemy1.tscn" id="3_yh12c"]
 
 [node name="Level" type="Node2D"]
 
@@ -9,3 +11,9 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_g5ias")
 metadata/_edit_use_anchors_ = true
+
+[node name="Tower" parent="." instance=ExtResource("2_s3ok6")]
+position = Vector2(850, 515)
+
+[node name="Enemy1" parent="." instance=ExtResource("3_yh12c")]
+position = Vector2(851, 200)

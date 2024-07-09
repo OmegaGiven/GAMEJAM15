@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1wkerubr42pi"]
+
+[ext_resource type="Script" path="res://scripts/BuildMenu.gd" id="1_4po0p"]
+
+[node name="BuildMenu" type="CanvasLayer" groups=["ui_element"]]
+script = ExtResource("1_4po0p")
+
+[node name="Left Button Menu" type="CanvasLayer" parent="."]
+
+[node name="Top" type="Button" parent="Left Button Menu"]
+offset_left = 962.0
+offset_top = 437.0
+offset_right = 1032.0
+offset_bottom = 468.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 1"
+
+[node name="Right" type="Button" parent="Left Button Menu"]
+offset_left = 1074.0
+offset_top = 509.0
+offset_right = 1144.0
+offset_bottom = 540.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 2"
+
+[node name="Bottom" type="Button" parent="Left Button Menu"]
+offset_left = 964.0
+offset_top = 593.0
+offset_right = 1034.0
+offset_bottom = 624.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 3"
+
+[node name="Top Button Menu" type="CanvasLayer" parent="."]
+
+[node name="Top" type="Button" parent="Top Button Menu"]
+offset_left = 850.0
+offset_top = 513.0
+offset_right = 920.0
+offset_bottom = 544.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 1"
+
+[node name="Right" type="Button" parent="Top Button Menu"]
+offset_left = 974.0
+offset_top = 593.0
+offset_right = 1044.0
+offset_bottom = 624.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 2"
+
+[node name="Bottom" type="Button" parent="Top Button Menu"]
+offset_left = 1098.0
+offset_top = 514.0
+offset_right = 1168.0
+offset_bottom = 545.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 3"
+
+[node name="Right Button Menu" type="CanvasLayer" parent="."]
+
+[node name="Top" type="Button" parent="Right Button Menu"]
+offset_left = 958.0
+offset_top = 432.0
+offset_right = 1028.0
+offset_bottom = 464.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 1"
+
+[node name="Right" type="Button" parent="Right Button Menu"]
+offset_left = 853.0
+offset_top = 522.0
+offset_right = 923.0
+offset_bottom = 553.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 2"
+
+[node name="Bottom" type="Button" parent="Right Button Menu"]
+offset_left = 965.0
+offset_top = 602.0
+offset_right = 1035.0
+offset_bottom = 633.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Tower 3"
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
