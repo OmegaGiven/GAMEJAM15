@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://edfeoj3jr33i"]
+
+[ext_resource type="Script" path="res://scripts/gold.gd" id="1_s8u3c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nl570"]
+radius = 21.2132
+
+[node name="Gold" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_s8u3c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(21, 19)
+shape = SubResource("CircleShape2D_nl570")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

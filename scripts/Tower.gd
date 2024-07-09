@@ -17,7 +17,7 @@ func _input(event):
 				if player_owner.resources >= 50:
 					in_placement = !in_placement
 					player_owner.resources -= 50
-					print("Tower bought and placed")
+					print("Tower bought and placed, Resources: {G}".format({"G": player_owner.resources}))
 					player_owner.owned_towers.append(self)
 					self.set_collision_layer_value(6, true)
 				else:

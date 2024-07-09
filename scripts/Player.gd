@@ -45,8 +45,6 @@ func movement():
 func move_camera():
 	SplitScreenFunctionality.player_characters[device_num]["camera"].position += movement() * .1
 	# get camera for player will setup global for this
-	# turn vector movement to translate camera
-	# include code to manipulate camera scale with right stick
 	# include rotation if we deem necessary
 
 func direction_manager():
@@ -71,7 +69,7 @@ func _input(event):
 			print("Player {n} exited freecam".format({"n": device_num}))
 
 	# Open X Craft Menu
-	if event.is_action_pressed("LEFT_action{n}".format({"n":device_num})):
+	if event.is_action_pressed("LEFT_action{n}".format({"n":device_num})) and !in_placement_mode:
 		toggle_build_menu()
 
 	## zoom Camera (this is glitchy as its only upon movement of joystick but not holding the joystick in position)
