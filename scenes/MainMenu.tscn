@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bro8f0qhi13h"]
+[gd_scene load_steps=4 format=3 uid="uid://bro8f0qhi13h"]
 
 [ext_resource type="PackedScene" uid="uid://bubg5pix7uosu" path="res://scenes/Menu Scenes/Menu.tscn" id="1_pgeli"]
 [ext_resource type="PackedScene" uid="uid://rgl4sdd51x7l" path="res://scenes/Menu Scenes/ArcadeMenu.tscn" id="2_dflvw"]
+[ext_resource type="PackedScene" uid="uid://tshpyxt3yo3u" path="res://scenes/Menu Scenes/SettingsMenu.tscn" id="3_oe8ew"]
 
 [node name="MainMenu" type="Node2D"]
 
 [node name="Menu" parent="." instance=ExtResource("1_pgeli")]
 
 [node name="ArcadeMenu" parent="." instance=ExtResource("2_dflvw")]
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_oe8ew")]
