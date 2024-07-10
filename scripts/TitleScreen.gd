@@ -18,3 +18,8 @@ func _on_arcade_pressed():
 func _on_visibility_changed():
 	if self.visible:
 		$VBoxContainer/Campaign.grab_focus()
+
+
+func _on_settings_pressed():
+	self.hide()
+	$"../SettingsMenu".show()

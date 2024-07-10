@@ -1,3 +1,57 @@
-[gd_scene format=3 uid="uid://tshpyxt3yo3u"]
+[gd_scene load_steps=2 format=3 uid="uid://tshpyxt3yo3u"]
+
+[ext_resource type="Script" path="res://scripts/SettingsMenu.gd" id="1_ay7nt"]
 
 [node name="SettingsMenu" type="Node2D"]
+script = ExtResource("1_ay7nt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Master" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="Master2" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="Music" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 2
+
+[node name="Music2" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="SFX" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SFX2" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="value_changed" from="VBoxContainer/Master2" to="." method="_on_master_2_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Music2" to="." method="_on_music_2_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFX2" to="." method="_on_sfx_2_value_changed"]
