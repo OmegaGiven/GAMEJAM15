@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://i6j70rwhfqo1"]
+
+[ext_resource type="Script" path="res://scripts/Arcade Match.gd" id="1_wfbg1"]
+[ext_resource type="PackedScene" uid="uid://iofifbdvmwp7" path="res://scenes/Level.tscn" id="2_kjde7"]
+
+[node name="ArcadeMatch" type="Node2D"]
+script = ExtResource("1_wfbg1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+offset_right = 1927.0
+offset_bottom = 1073.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" groups=["GAME_VIEWPORT"]]
+disable_3d = true
+use_xr = true
+handle_input_locally = false
+size = Vector2i(0, 0)
+render_target_update_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+
+[node name="Level" parent="HBoxContainer/SubViewportContainer/SubViewport" groups=["LEVELS"] instance=ExtResource("2_kjde7")]

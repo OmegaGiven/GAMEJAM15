@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlu2scs1lvef7"]
+
+[ext_resource type="Script" path="res://scripts/Tower.gd" id="1_vdodp"]
+[ext_resource type="Texture2D" uid="uid://dj4ftj2jt1lu1" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="2_0duo7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7s4yy"]
+radius = 22.0
+height = 88.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5xbj"]
+radius = 363.034
+
+[node name="Tower" type="RigidBody2D" groups=["towers"]]
+collision_layer = 32
+collision_mask = 125
+gravity_scale = 0.0
+script = ExtResource("1_vdodp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 75)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7s4yy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0duo7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="proximity" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_p5xbj")
+debug_color = Color(0.991683, 0, 0.262318, 0.42)

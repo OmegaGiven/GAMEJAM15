@@ -31,7 +31,7 @@ func _input(event):
 			player.free_cam = true
 			player.velocity = Vector2.ZERO
 			print("Player is in placement mode")
-			current_tower = prebuild("res://scenes/Tower.tscn")
+			create_new_tower()
 	elif Btype == "TOP":
 		$"Top Button Menu".show()
 	elif Btype == "RIGHT":
@@ -50,7 +50,6 @@ func _on_tree_entered():
 		$"Right Button Menu".show()
 	else:
 		print("Build Menu entered but no type")
-
 
 func resize_ui():
 	var p = match_ui_to_splitscreen()
@@ -71,13 +70,19 @@ func match_ui_to_splitscreen():
 		return Vector2(0,0)
 	return p
 
+func create_new_tower():
+	current_tower = prebuild("res://scenes/Objects/Tower.tscn")
 
 func prebuild(x):
 	#shows the tower in either a shadow using shader or outline as if it needs to be places in front of player
 	var Tower = load(x)
 	var tower = Tower.instantiate()
 	tower.player_owner = player
+	tower.owner_build_menu = self
 	# TODO change this to the main game scene once we have a actual level funcitonality.
 	get_tree().get_first_node_in_group("LEVELS").add_child(tower)
-	tower.position = player.position
 	return tower
+
+
+func _on_tower_finished_placement():
+	pass
