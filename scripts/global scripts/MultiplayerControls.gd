@@ -5,6 +5,7 @@ var num_players = Input.get_connected_joypads().size()
 var players: Array = []
 var input_maps: Array = []
 var keyboard: bool = true
+var in_main_menu = true
 
 signal controller_switch
 
@@ -45,7 +46,8 @@ func _on_joy_connection_changed(device: int, connected: bool):
 		add_player(device)
 		#print("Added player index {d} to the world.".format({"d":device}))
 		
-		SplitScreenFunctionality.add_splitscreen_to_scene()
+		if !in_main_menu:
+			SplitScreenFunctionality.add_splitscreen_to_scene()
 		
 		if get_tree().get_nodes_in_group("ui_element") != null:
 			for x in get_tree().get_nodes_in_group("ui_element"):
@@ -240,6 +242,7 @@ func add_controls_for_device(player_index: int, kb):
 		right_button_action_event = InputEventJoypadButton.new()
 		right_button_action_event.device = player_index
 		right_button_action_event.button_index = JOY_BUTTON_B
+		InputMap.action_add_event("ui_cancel", right_button_action_event)
 		InputMap.action_add_event(right_button_action, right_button_action_event)
 		
 		var bottom_button_action: String

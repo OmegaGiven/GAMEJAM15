@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://iofifbdvmwp7"]
 
 [ext_resource type="Texture2D" uid="uid://b2lj288ciqtp2" path="res://assets/fantasy background.jpg" id="1_g5ias"]
-[ext_resource type="PackedScene" uid="uid://dlu2scs1lvef7" path="res://scenes/Tower.tscn" id="2_s3ok6"]
-[ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Enemy1.tscn" id="3_yh12c"]
-[ext_resource type="PackedScene" uid="uid://edfeoj3jr33i" path="res://scenes/gold.tscn" id="4_txptr"]
+[ext_resource type="PackedScene" uid="uid://dlu2scs1lvef7" path="res://scenes/Objects/Tower.tscn" id="2_howpl"]
+[ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Objects/Enemy1.tscn" id="3_ya4pk"]
+[ext_resource type="PackedScene" uid="uid://edfeoj3jr33i" path="res://scenes/Objects/gold.tscn" id="4_5t734"]
 
 [node name="Level" type="Node2D"]
 
@@ -13,35 +13,35 @@ offset_bottom = 1080.0
 texture = ExtResource("1_g5ias")
 metadata/_edit_use_anchors_ = true
 
-[node name="Tower" parent="." instance=ExtResource("2_s3ok6")]
+[node name="Tower" parent="." instance=ExtResource("2_howpl")]
 position = Vector2(850, 515)
 
-[node name="Enemy1" parent="." instance=ExtResource("3_yh12c")]
+[node name="Enemy1" parent="." instance=ExtResource("3_ya4pk")]
 position = Vector2(851, 200)
 
-[node name="Gold" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(214, 391)
 
-[node name="Gold2" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold2" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(387, 277)
 
-[node name="Gold3" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold3" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(197, 672)
 
-[node name="Gold4" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold4" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(-151, 546)
 
-[node name="Gold5" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold5" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(-281, 349)
 
-[node name="Gold6" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold6" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(-401, 173)
 
-[node name="Gold7" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold7" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(-383, -179)
 
-[node name="Gold8" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold8" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(-62, -234)
 
-[node name="Gold9" parent="." instance=ExtResource("4_txptr")]
+[node name="Gold9" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(205, -134)

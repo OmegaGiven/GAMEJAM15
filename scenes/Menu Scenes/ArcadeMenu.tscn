@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://rgl4sdd51x7l"]
+
+[ext_resource type="Script" path="res://scripts/ArcadeMenu.gd" id="1_m5dbk"]
+
+[node name="ArcadeMenu" type="Node2D"]
+script = ExtResource("1_m5dbk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -37.0
+offset_right = 61.5
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = "ARCADE MATCH"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Difficulty"
+horizontal_alignment = 1
+
+[node name="Difficulty" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Teams" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Start Match" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start Match"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/Start Match" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start Match" to="." method="_on_start_match_pressed"]

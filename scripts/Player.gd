@@ -12,7 +12,7 @@ var MIN_ZOOM = Vector2(0.25, 0.25)
 const ZOOM_SPEED = 0.1
 var in_build_menu = false
 var in_placement_mode = false #this will allow you to be in a free cam mode to place the tower centered on camera
-var resources: int = 100
+var resources: int = 10000
 var owned_towers = []
 
 var BuildMenu = load("res://scenes/BuildMenu.tscn")
@@ -109,7 +109,7 @@ func _process(_delta):
 		#var zoom_check = SplitScreenFunctionality.player_characters[device_num]["camera"].zoom + (ZOOM_SPEED * zoom)
 		#if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
 			#SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
-			
+
 	if free_cam or in_placement_mode:
 		move_camera()
 	else:
