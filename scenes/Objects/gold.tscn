@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://edfeoj3jr33i"]
 
-[ext_resource type="Script" path="res://scripts/gold.gd" id="1_6ayrt"]
+[ext_resource type="Script" path="res://scripts/object scripts/gold.gd" id="1_ggk13"]
 [ext_resource type="Texture2D" uid="uid://dse5ik7oibbax" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Resources/Resources/G_Spawn.png" id="2_akt3i"]
 [ext_resource type="Texture2D" uid="uid://cqj7jra4x54v0" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Resources/Resources/G_Idle.png" id="3_006lj"]
 
@@ -74,7 +74,7 @@ animations = [{
 
 [node name="Gold" type="Area2D"]
 collision_layer = 8
-script = ExtResource("1_6ayrt")
+script = ExtResource("1_ggk13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 12)

@@ -71,7 +71,7 @@ func match_ui_to_splitscreen():
 	return p
 
 func create_new_tower():
-	current_tower = prebuild("res://scenes/Objects/Tower.tscn")
+	current_tower = prebuild(GamePaths.Tower)
 
 func prebuild(x):
 	#shows the tower in either a shadow using shader or outline as if it needs to be places in front of player

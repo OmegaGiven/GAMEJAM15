@@ -85,7 +85,7 @@ func add_player(player_index: int) -> void:
 			return
 	
 	# Instantiate a new player and appends to players list
-	var Player = load("res://scenes/Player.tscn")
+	var Player = load(GamePaths.Player)
 	var player = Player.instantiate()
 	player.device_num = player_index
 	player.keyboard = keyboard

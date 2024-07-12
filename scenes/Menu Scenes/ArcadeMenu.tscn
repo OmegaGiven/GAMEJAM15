@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://rgl4sdd51x7l"]
 
-[ext_resource type="Script" path="res://scripts/ArcadeMenu.gd" id="1_m5dbk"]
+[ext_resource type="Script" path="res://scripts/menu scripts/ArcadeMenu.gd" id="1_x02uw"]
 
 [node name="ArcadeMenu" type="Node2D"]
-script = ExtResource("1_m5dbk")
+script = ExtResource("1_x02uw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8

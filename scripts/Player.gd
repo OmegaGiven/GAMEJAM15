@@ -15,7 +15,7 @@ var in_placement_mode = false #this will allow you to be in a free cam mode to p
 var resources: int = 10000
 var owned_towers = []
 
-var BuildMenu = load("res://scenes/BuildMenu.tscn")
+var BuildMenu = load(GamePaths.BuildMenu)
 var buildmenu = BuildMenu.instantiate()
 
 #func _ready():
