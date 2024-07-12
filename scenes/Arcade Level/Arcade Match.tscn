@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://i6j70rwhfqo1"]
+[gd_scene load_steps=4 format=3 uid="uid://i6j70rwhfqo1"]
 
 [ext_resource type="Script" path="res://scenes/Arcade Level/Arcade Match.gd" id="1_esohd"]
 [ext_resource type="PackedScene" uid="uid://iofifbdvmwp7" path="res://scenes/Arcade Level/Level.tscn" id="2_3lmj7"]
+[ext_resource type="PackedScene" uid="uid://mu7emlxphf7w" path="res://scenes/ui_elements/PauseMenu.tscn" id="3_bcq2k"]
 
 [node name="ArcadeMatch" type="Node2D"]
 script = ExtResource("1_esohd")
@@ -24,3 +25,5 @@ render_target_update_mode = 0
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
 
 [node name="Level" parent="HBoxContainer/SubViewportContainer/SubViewport" groups=["LEVELS"] instance=ExtResource("2_3lmj7")]
+
+[node name="PauseMenu" parent="HBoxContainer/SubViewportContainer" groups=["LEVELS"] instance=ExtResource("3_bcq2k")]
