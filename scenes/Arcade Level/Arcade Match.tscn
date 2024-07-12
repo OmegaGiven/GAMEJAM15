@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7jy5qke65pgd"]
+[gd_scene load_steps=3 format=3 uid="uid://i6j70rwhfqo1"]
 
-[ext_resource type="Script" path="res://scripts/ExperimentalOmega.gd" id="1_je5yk"]
-[ext_resource type="PackedScene" uid="uid://iofifbdvmwp7" path="res://scenes/Level.tscn" id="2_n5ocr"]
+[ext_resource type="Script" path="res://scripts/Arcade Match.gd" id="1_esohd"]
+[ext_resource type="PackedScene" uid="uid://iofifbdvmwp7" path="res://scenes/Arcade Level/Level.tscn" id="2_3lmj7"]
 
-[node name="ExperimentalOmega" type="Node2D" groups=["GAME"]]
-script = ExtResource("1_je5yk")
+[node name="ArcadeMatch" type="Node2D"]
+script = ExtResource("1_esohd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 visible = false
@@ -23,4 +23,4 @@ render_target_update_mode = 0
 
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
 
-[node name="Level" parent="HBoxContainer/SubViewportContainer/SubViewport" groups=["LEVELS"] instance=ExtResource("2_n5ocr")]
+[node name="Level" parent="HBoxContainer/SubViewportContainer/SubViewport" groups=["LEVELS"] instance=ExtResource("2_3lmj7")]

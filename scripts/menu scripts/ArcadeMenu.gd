@@ -22,7 +22,8 @@ func _on_visibility_changed():
 		for x in len(MultiplayerControls.players):
 			$VBoxContainer/Teams.add_item(str(x+1))
 		$VBoxContainer/Difficulty.grab_focus()
+	return
 
 func _on_start_match_pressed():
 	MultiplayerControls.in_main_menu = false
-	get_tree().change_scene_to_file("res://scenes/Arcade Match.tscn")
+	get_tree().change_scene_to_file(GamePaths.arcade_match)

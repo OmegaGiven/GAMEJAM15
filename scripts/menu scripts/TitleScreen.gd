@@ -23,3 +23,8 @@ func _on_visibility_changed():
 func _on_settings_pressed():
 	self.hide()
 	$"../SettingsMenu".show()
+
+
+func _on_tutorial_pressed():
+	MultiplayerControls.in_main_menu = false
+	get_tree().change_scene_to_file(GamePaths.tutorial_level)
