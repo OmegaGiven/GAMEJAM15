@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="GAMEJAM15"
-run/main_scene="res://scenes/MainMenu.tscn"
+run/main_scene="res://scenes/Menu Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GamePaths="*res://scripts/global scripts/GamePaths.gd"
-MultiplayerControls="*res://scripts/global scripts/MultiplayerControls.gd"
-Settings="*res://scripts/global scripts/Settings.gd"
-SplitScreenFunctionality="*res://scripts/global scripts/SplitScreenFunctionality.gd"
+GamePaths="*res://global scripts/GamePaths.gd"
+MultiplayerControls="*res://global scripts/MultiplayerControls.gd"
+Settings="*res://global scripts/Settings.gd"
+SplitScreenFunctionality="*res://global scripts/SplitScreenFunctionality.gd"
 
 [display]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://i6j70rwhfqo1"]
 
-[ext_resource type="Script" path="res://scripts/Arcade Match.gd" id="1_esohd"]
+[ext_resource type="Script" path="res://scenes/Arcade Level/Arcade Match.gd" id="1_esohd"]
 [ext_resource type="PackedScene" uid="uid://iofifbdvmwp7" path="res://scenes/Arcade Level/Level.tscn" id="2_3lmj7"]
 
 [node name="ArcadeMatch" type="Node2D"]

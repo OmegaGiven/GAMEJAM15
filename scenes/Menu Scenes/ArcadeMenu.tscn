@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rgl4sdd51x7l"]
 
-[ext_resource type="Script" path="res://scripts/menu scripts/ArcadeMenu.gd" id="1_x02uw"]
+[ext_resource type="Script" path="res://scenes/Menu Scenes/ArcadeMenu.gd" id="1_x02uw"]
 
 [node name="ArcadeMenu" type="Node2D"]
 script = ExtResource("1_x02uw")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dglo6tr6l2krm"]
 
-[ext_resource type="Script" path="res://scripts/object scripts/HomeBase.gd" id="1_b4amv"]
+[ext_resource type="Script" path="res://scenes/Objects/HomeBase.gd" id="1_b4amv"]
 
 [node name="HomeBase" type="Node2D"]
 script = ExtResource("1_b4amv")
