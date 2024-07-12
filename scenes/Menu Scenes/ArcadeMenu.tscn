@@ -43,5 +43,5 @@ layout_mode = 2
 text = "Start Match"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="VBoxContainer/Start Match" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Start Match" to="." method="_on_start_match_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start Match" to="." method="_on_button_pressed"]
