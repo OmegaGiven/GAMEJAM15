@@ -4,6 +4,7 @@ extends Node
 #LEVELS
 @export var arcade_match 	= "res://scenes/Arcade Level/Arcade Match.tscn"
 @export var tutorial_level	= "res://scenes/Tutorial/Tutorial.tscn"
+@export var main_menu 		= "res://scenes/Menu Scenes/MainMenu.tscn"
 
 
 #OBJECTS
@@ -12,4 +13,4 @@ extends Node
 
 
 #UI
-@export var BuildMenu 		= "res://scenes/BuildMenu.tscn"
+@export var BuildMenu 		= "res://scenes/ui_elements/BuildMenu.tscn"

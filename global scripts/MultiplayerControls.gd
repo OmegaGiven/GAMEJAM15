@@ -242,7 +242,7 @@ func add_controls_for_device(player_index: int, kb):
 		right_button_action_event = InputEventJoypadButton.new()
 		right_button_action_event.device = player_index
 		right_button_action_event.button_index = JOY_BUTTON_B
-		InputMap.action_add_event("ui_cancel", right_button_action_event)
+		#InputMap.action_add_event("ui_cancel", right_button_action_event)
 		InputMap.action_add_event(right_button_action, right_button_action_event)
 		
 		var bottom_button_action: String
@@ -282,6 +282,7 @@ func add_controls_for_device(player_index: int, kb):
 		menu_action_event.device = player_index
 		menu_action_event.button_index = JOY_BUTTON_START
 		InputMap.action_add_event(menu_action, menu_action_event)
+		InputMap.action_add_event("ui_cancel", menu_action_event)
 
 		var back_action: String
 		var back_action_event: InputEventJoypadButton

@@ -24,6 +24,7 @@ func _on_visibility_changed():
 		$VBoxContainer/Difficulty.grab_focus()
 	return
 
+
 func _on_start_match_pressed():
 	MultiplayerControls.in_main_menu = false
 	get_tree().change_scene_to_file(GamePaths.arcade_match)

@@ -115,3 +115,4 @@ func _process(_delta):
 	else:
 		SplitScreenFunctionality.player_characters[device_num]["camera"].position = self.position
 
+
