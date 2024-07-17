@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://7384ya4k0hmm"]
+[gd_scene load_steps=5 format=3 uid="uid://7384ya4k0hmm"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_i7fl6"]
 
@@ -6,6 +6,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6338"]
 size = Vector2(39, 41)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0y4p0"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 125
@@ -21,3 +23,15 @@ sprite_frames = SubResource("SpriteFrames_36h0j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_g6338")
+
+[node name="SpawnableLocation" type="Area2D" parent="."]
+collision_mask = 125
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnableLocation"]
+shape = SubResource("CircleShape2D_0y4p0")
+
+[connection signal="area_shape_entered" from="SpawnableLocation" to="." method="_on_spawnable_location_area_shape_entered"]
+[connection signal="area_shape_exited" from="SpawnableLocation" to="." method="_on_spawnable_location_area_shape_exited"]
+[connection signal="body_entered" from="SpawnableLocation" to="." method="_on_spawnable_location_body_entered"]
+[connection signal="body_exited" from="SpawnableLocation" to="." method="_on_spawnable_location_body_exited"]
+[connection signal="body_shape_entered" from="SpawnableLocation" to="." method="_on_spawnable_location_body_shape_entered"]

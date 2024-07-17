@@ -18,6 +18,7 @@ var owned_towers = []
 var BuildMenu = load(GamePaths.BuildMenu)
 var buildmenu = BuildMenu.instantiate()
 
+
 #func _ready():
 	#SplitScreenFunctionality.player_characters[device_num]["viewport"].add_child(buildmenu)
 	#SplitScreenFunctionality.player_characters[device_num]["viewport"].get_node(buildmenu).hide()
@@ -47,6 +48,7 @@ func move_camera():
 	# get camera for player will setup global for this
 	# include rotation if we deem necessary
 
+
 func direction_manager():
 	#TODO get animation direction and apply to player sprite
 	pass
@@ -56,6 +58,7 @@ func _physics_process(_delta):
 	if not free_cam:
 		velocity = movement()
 	move_and_slide()
+
 
 func _input(event):
 	#this will error until I find key for it but on keyboard as its for controller currently
@@ -72,11 +75,6 @@ func _input(event):
 	if event.is_action_pressed("LEFT_action{n}".format({"n":device_num})) and !in_placement_mode:
 		toggle_build_menu()
 
-	## zoom Camera (this is glitchy as its only upon movement of joystick but not holding the joystick in position)
-	#if event.is_action("ui_upR{n}".format({"n":device_num})) or event.is_action("ui_downR{n}".format({"n":device_num})):
-		#var zoom = SplitScreenFunctionality.player_characters[device_num]["camera"].zoom - (Vector2(event.axis_value, event.axis_value) * 0.1)
-		#if zoom < MAX_ZOOM and zoom > MIN_ZOOM:
-			#SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom
 
 func toggle_build_menu():
 		if !in_build_menu:
@@ -93,6 +91,7 @@ func toggle_build_menu():
 			#SplitScreenFunctionality.player_characters[device_num]["viewport"].get_node(buildmenu).hide()
 			print("Closing Crafting Menu")
 
+
 func _process(_delta):
 	# zoom Camera "smoothish"
 	if Input.is_action_pressed("R_Shoulder_action{n}".format({"n":device_num})):
@@ -103,16 +102,10 @@ func _process(_delta):
 		var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x - ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y - ZOOM_SPEED)
 		if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
 			SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
-#old zoom method using joystick
-	#if Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y) > deadzone or Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y) < -deadzone:
-		#var zoom = Vector2(Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y), Input.get_joy_axis(device_num, JOY_AXIS_RIGHT_Y))
-		#var zoom_check = SplitScreenFunctionality.player_characters[device_num]["camera"].zoom + (ZOOM_SPEED * zoom)
-		#if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
-			#SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
+
 
 	if free_cam or in_placement_mode:
 		move_camera()
 	else:
 		SplitScreenFunctionality.player_characters[device_num]["camera"].position = self.position
-
 

@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://cb8ebr1sk20qg"]
+[gd_scene load_steps=4 format=3 uid="uid://cb8ebr1sk20qg"]
+
+[ext_resource type="PackedScene" uid="uid://dglo6tr6l2krm" path="res://scenes/Objects/HomeBase.tscn" id="1_7x03w"]
+[ext_resource type="Script" path="res://scenes/Tutorial/Tutorial Level.gd" id="1_ms747"]
+[ext_resource type="PackedScene" uid="uid://b4fs2fye857a2" path="res://scenes/Objects/Enemy1Spawner.tscn" id="2_r6nm6"]
 
 [node name="TutorialLevel" type="Node2D" groups=["LEVELS"]]
+script = ExtResource("1_ms747")
+
+[node name="HomeBase" parent="." instance=ExtResource("1_7x03w")]
+position = Vector2(-13, 116)
+
+[node name="Enemy1Spawner" parent="." instance=ExtResource("2_r6nm6")]
+position = Vector2(-18, -545)
+
+[node name="Tutorial Spawn" type="Marker2D" parent="."]
+position = Vector2(-3, 428)

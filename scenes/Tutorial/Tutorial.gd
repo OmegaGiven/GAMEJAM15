@@ -6,3 +6,4 @@ func _ready():
 	SplitScreenFunctionality.add_splitscreen_to_scene()
 	$HBoxContainer/SubViewportContainer/PauseMenu.hide()
 
+	print("anchor preset: ", $HBoxContainer/SubViewportContainer/Dialogue/RichTextLabel.anchors_preset)

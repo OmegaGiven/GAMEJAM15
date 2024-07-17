@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlu2scs1lvef7"]
 
-[ext_resource type="Script" path="res://scenes/Objects/Tower.gd" id="1_ktus2"]
+[ext_resource type="Script" path="res://scenes/Objects/Tower.gd" id="1_t18vd"]
 [ext_resource type="Texture2D" uid="uid://dj4ftj2jt1lu1" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="2_0duo7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7s4yy"]
@@ -14,7 +14,7 @@ radius = 363.034
 collision_layer = 32
 collision_mask = 125
 gravity_scale = 0.0
-script = ExtResource("1_ktus2")
+script = ExtResource("1_t18vd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 75)
