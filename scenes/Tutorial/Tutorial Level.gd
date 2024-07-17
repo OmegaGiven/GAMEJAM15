@@ -2,6 +2,9 @@ extends Node2D
 
 
 func _ready():
+	var canvas_modulate = CanvasModulate.new()
+	canvas_modulate.color = Color(0, 0, 0, Settings.DARKNESS)
+	add_child(canvas_modulate)
 	spawn()
 	pass
 
