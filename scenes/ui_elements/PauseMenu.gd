@@ -6,7 +6,6 @@ func _input(event):
 		self.visible = !visible
 
 
-
 func _on_exit_pressed():
 	get_tree().quit()
 
@@ -18,7 +17,6 @@ func _on_main_menu_pressed():
 		level.remove_child(x)
 	$"../../..".remove_child(SplitScreenFunctionality.scene_splitscreen)
 	get_tree().change_scene_to_file(GamePaths.main_menu)
-
 
 
 func _on_visibility_changed():

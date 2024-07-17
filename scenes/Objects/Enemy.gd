@@ -3,12 +3,23 @@ extends CharacterBody2D
 const SPEED = 300.0
 var Health = 100
 var cooldown = 1 #in seconds
+var destination_list = []
+
 
 func detect_tower():
 	pass
 
 
 func detect_player():
+	pass
+
+
+func go_toward_base():
+	pass
+
+
+func next_destination():
+	#NavigationAgent2D
 	pass
 
 
