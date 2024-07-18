@@ -8,6 +8,8 @@ var in_menu = false
 var menu_user = -1
 var current_level = null
 
+const DARKNESS = 1.0
+
 @export var resolution_x = 1920
 @export var resolution_y = 1080
 

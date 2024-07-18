@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://de0xewjqcxhl8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iqwli"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pndmw"]
+
+[node name="tree" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iqwli")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_pndmw")

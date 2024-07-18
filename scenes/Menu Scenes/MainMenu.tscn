@@ -1,13 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://bro8f0qhi13h"]
+[gd_scene load_steps=10 format=3 uid="uid://bro8f0qhi13h"]
 
 [ext_resource type="PackedScene" uid="uid://bubg5pix7uosu" path="res://scenes/Menu Scenes/Menu.tscn" id="1_pgeli"]
 [ext_resource type="PackedScene" uid="uid://rgl4sdd51x7l" path="res://scenes/Menu Scenes/ArcadeMenu.tscn" id="2_dflvw"]
 [ext_resource type="PackedScene" uid="uid://tshpyxt3yo3u" path="res://scenes/Menu Scenes/SettingsMenu.tscn" id="3_oe8ew"]
+[ext_resource type="AudioStream" uid="uid://nj43jlh0axg5" path="res://assets/OmegaGivenAssets/Fire.mp3" id="4_jlx33"]
+
+[sub_resource type="Curve" id="Curve_jifls"]
+_data = [Vector2(0.318868, 0.18071), 0.0, 0.0, 0, 0, Vector2(0.737736, 0.642409), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hji82"]
+curve = SubResource("Curve_jifls")
+
+[sub_resource type="Gradient" id="Gradient_5knxk"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wsj2t"]
+gradient = SubResource("Gradient_5knxk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n083i"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(960, 1200, 0)
+angle_min = -69.7
+angle_max = 35.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 101.46
+initial_velocity_max = 248.41
+radial_velocity_min = -45.0
+radial_velocity_max = 45.0
+gravity = Vector3(0, -98, 0)
+scale_max = 5.75
+color_ramp = SubResource("GradientTexture1D_wsj2t")
+alpha_curve = SubResource("CurveTexture_hji82")
+turbulence_noise_strength = 0.0
 
 [node name="MainMenu" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
 
 [node name="Menu" parent="." instance=ExtResource("1_pgeli")]
 
 [node name="ArcadeMenu" parent="." instance=ExtResource("2_dflvw")]
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_oe8ew")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(1, 7)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_n083i")
+lifetime = 4.0
+speed_scale = 0.3
+explosiveness = 0.2
+visibility_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jlx33")
+volume_db = 6.0
+autoplay = true
+bus = &"SFX"
