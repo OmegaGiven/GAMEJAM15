@@ -25,7 +25,7 @@ func _input(event):
 	
 	elif Btype == "LEFT":
 		# will need to implement a resource check on the player that opened the build menu
-		if event.is_action_pressed("BOTTOM_action{n}".format({"n":player.device_num})):
+		if event.is_action_pressed("BOTTOM_action{n}".format({"n":player.device_num})) or event.is_action_pressed("left_mouse_click"):
 			$"Left Button Menu".hide()
 			player.in_placement_mode = true
 			player.free_cam = true

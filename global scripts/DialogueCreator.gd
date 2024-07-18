@@ -1,5 +1,6 @@
 extends Node
 
+
 var dialogue_opened = false
 var skip_dialogue_typing = false
 var TEXT_SPEED = 0.2

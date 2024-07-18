@@ -1,8 +1,60 @@
-[gd_scene load_steps=2 format=3 uid="uid://bubg5pix7uosu"]
+[gd_scene load_steps=21 format=3 uid="uid://bubg5pix7uosu"]
 
 [ext_resource type="Script" path="res://scenes/Menu Scenes/TitleScreen.gd" id="1_5mik1"]
+[ext_resource type="Texture2D" uid="uid://dhboi3tx22mly" path="res://assets/OmegaGivenAssets/GreyUIButton1.png" id="2_hftu1"]
+[ext_resource type="Texture2D" uid="uid://p61atyaq7blj" path="res://assets/OmegaGivenAssets/GreyUIButton2.png" id="3_4p1or"]
+[ext_resource type="Texture2D" uid="uid://csutomeb5oe67" path="res://assets/OmegaGivenAssets/GreyUIButton3.png" id="4_ielnu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q70qe"]
+texture = ExtResource("2_hftu1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uk8pn"]
+texture = ExtResource("3_4p1or")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sm3kv"]
+texture = ExtResource("4_ielnu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h2bt5"]
+texture = ExtResource("3_4p1or")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72tk4"]
+texture = ExtResource("2_hftu1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6p7om"]
+texture = ExtResource("3_4p1or")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_64wml"]
+texture = ExtResource("4_ielnu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uhecm"]
+texture = ExtResource("3_4p1or")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u7ngy"]
+texture = ExtResource("2_hftu1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pmtxg"]
+texture = ExtResource("3_4p1or")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rf2u"]
+texture = ExtResource("4_ielnu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pp660"]
+texture = ExtResource("3_4p1or")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_foal8"]
+texture = ExtResource("2_hftu1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_occtq"]
+texture = ExtResource("3_4p1or")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ah14"]
+texture = ExtResource("4_ielnu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljbii"]
+texture = ExtResource("3_4p1or")
 
 [node name="Menu" type="Node2D"]
+scale = Vector2(5, 5)
 script = ExtResource("1_5mik1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -18,28 +70,48 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Campaign" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Campaign"
-
 [node name="Arcade" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_q70qe")
+theme_override_styles/hover = SubResource("StyleBoxTexture_uk8pn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sm3kv")
+theme_override_styles/focus = SubResource("StyleBoxTexture_h2bt5")
 text = "Arcade Match
 "
 
 [node name="Tutorial" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_72tk4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6p7om")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_64wml")
+theme_override_styles/focus = SubResource("StyleBoxTexture_uhecm")
 text = "Tutorial"
 
 [node name="Settings" type="Button" parent="VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_u7ngy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pmtxg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7rf2u")
+theme_override_styles/focus = SubResource("StyleBoxTexture_pp660")
 text = "Settings
 "
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-text = "Exit
-"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_foal8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_occtq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6ah14")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ljbii")
+text = "Exit"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/Arcade" to="." method="_on_arcade_pressed"]

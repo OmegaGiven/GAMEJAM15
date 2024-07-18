@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cb8ebr1sk20qg"]
+[gd_scene load_steps=8 format=3 uid="uid://cb8ebr1sk20qg"]
 
 [ext_resource type="PackedScene" uid="uid://dglo6tr6l2krm" path="res://scenes/Objects/HomeBase.tscn" id="1_7x03w"]
 [ext_resource type="Script" path="res://scenes/Tutorial/Tutorial Level.gd" id="1_ms747"]
 [ext_resource type="PackedScene" uid="uid://b4fs2fye857a2" path="res://scenes/Objects/Enemy1Spawner.tscn" id="2_r6nm6"]
 [ext_resource type="Texture2D" uid="uid://ct35bj72og0fb" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="2_svcdr"]
+[ext_resource type="PackedScene" uid="uid://qfjk7m3llnyp" path="res://scenes/Objects/bonfire.tscn" id="5_2j62p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w5mx2"]
 texture = ExtResource("2_svcdr")
@@ -548,3 +549,5 @@ position = Vector2(-18, -545)
 
 [node name="Tutorial Spawn" type="Marker2D" parent="."]
 position = Vector2(-3, 428)
+
+[node name="Bonfire" parent="." instance=ExtResource("5_2j62p")]

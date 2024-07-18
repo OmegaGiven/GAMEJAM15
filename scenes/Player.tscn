@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7384ya4k0hmm"]
+[gd_scene load_steps=9 format=3 uid="uid://7384ya4k0hmm"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_i7fl6"]
 
@@ -10,8 +10,8 @@ size = Vector2(39, 41)
 [sub_resource type="CircleShape2D" id="CircleShape2D_0y4p0"]
 
 [sub_resource type="Gradient" id="Gradient_47y5l"]
-offsets = PackedFloat32Array(0, 0.0761905, 0.333333, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.244085, 0.244085, 0.244085, 1, 0.118268, 0.118268, 0.118268, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.0412698, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.396889, 0.396889, 0.396889, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7jerq"]
 gradient = SubResource("Gradient_47y5l")
@@ -20,6 +20,28 @@ height = 500
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.521368)
+
+[sub_resource type="Animation" id="Animation_rvnjp"]
+resource_name = "fire_flicker"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.9, 1.4, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.0, 1.98, 1.0, 2.98]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kf1f8"]
+_data = {
+"fire_flicker": SubResource("Animation_rvnjp")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 125
@@ -43,8 +65,14 @@ collision_mask = 125
 shape = SubResource("CircleShape2D_0y4p0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 3.65
+energy = 2.69417
 texture = SubResource("GradientTexture2D_7jerq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+libraries = {
+"": SubResource("AnimationLibrary_kf1f8")
+}
+autoplay = "fire_flicker"
 
 [connection signal="area_shape_entered" from="SpawnableLocation" to="." method="_on_spawnable_location_area_shape_entered"]
 [connection signal="area_shape_exited" from="SpawnableLocation" to="." method="_on_spawnable_location_area_shape_exited"]
