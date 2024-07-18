@@ -17,6 +17,7 @@ func add_splitscreen_to_scene():
 				var player_viewport = SubViewport.new()# create new viewport for player
 				player_viewport_container.add_child(player_viewport)
 				var player_camera = Camera2D.new()# create new camera to go in viewport
+				player_camera.zoom *= 5
 				player_viewport.add_child(player_camera)
 				player_viewport.world_2d = get_tree().get_first_node_in_group("GAME_VIEWPORT").world_2d # $HBoxContainer/SubViewportContainer/SubViewport
 				print("2d word: ", player_viewport.world_2d)
