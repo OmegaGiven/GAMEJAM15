@@ -49,14 +49,15 @@ func move_camera():
 	# include rotation if we deem necessary
 
 
-func direction_manager():
-	#TODO get animation direction and apply to player sprite
-	pass
-
-
 func _physics_process(_delta):
 	if not free_cam:
 		velocity = movement()
+		
+		#animation direction
+		if velocity == Vector2.ZERO:
+			pass #maintains dirtection when holding still
+		else:
+			$AnimationTree.set("parameters/BlendSpace2D/blend_position", velocity)
 	move_and_slide()
 
 
@@ -74,6 +75,11 @@ func _input(event):
 	# Open X Craft Menu
 	if event.is_action_pressed("LEFT_action{n}".format({"n":device_num})) and !in_placement_mode:
 		toggle_build_menu()
+		
+	#print(event)
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			#print("scrolling")
 
 
 func toggle_build_menu():
@@ -93,15 +99,25 @@ func toggle_build_menu():
 
 
 func _process(_delta):
-	# zoom Camera "smoothish"
-	if Input.is_action_pressed("R_Shoulder_action{n}".format({"n":device_num})):
-		var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x + ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y + ZOOM_SPEED)
-		if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
-			SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
-	if Input.is_action_pressed("L_Shoulder_action{n}".format({"n":device_num})):
-		var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x - ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y - ZOOM_SPEED)
-		if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
-			SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
+	
+	if keyboard: #keybboard zoom
+		if Input.is_action_just_pressed("R_Shoulder_action{n}".format({"n":device_num})):
+			var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x + ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y + ZOOM_SPEED)
+			if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
+				SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
+		if Input.is_action_just_pressed("L_Shoulder_action{n}".format({"n":device_num})):
+			var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x - ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y - ZOOM_SPEED)
+			if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
+				SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
+	else:	#gamepad zoom bumpers
+		if Input.is_action_pressed("R_Shoulder_action{n}".format({"n":device_num})):
+			var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x + ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y + ZOOM_SPEED)
+			if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
+				SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
+		if Input.is_action_pressed("L_Shoulder_action{n}".format({"n":device_num})):
+			var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x - ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y - ZOOM_SPEED)
+			if zoom_check < MAX_ZOOM and zoom_check > MIN_ZOOM:
+				SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
 
 
 	if free_cam or in_placement_mode:
