@@ -241,7 +241,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(right_button_action)
 		right_button_action_event = InputEventJoypadButton.new()
 		right_button_action_event.device = player_index
-		right_button_action_event.button_index = JOY_BUTTON_B
+		right_button_action_event.button_index = input_maps[player_index]["RIGHT_action{n}".format({"n":player_index})]
 		#InputMap.action_add_event("ui_cancel", right_button_action_event)
 		InputMap.action_add_event(right_button_action, right_button_action_event)
 		
@@ -251,7 +251,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(bottom_button_action)
 		bottom_button_action_event = InputEventJoypadButton.new()
 		bottom_button_action_event.device = player_index
-		bottom_button_action_event.button_index = JOY_BUTTON_A
+		bottom_button_action_event.button_index =  input_maps[player_index]["BOTTOM_action{n}".format({"n":player_index})]
 		InputMap.action_add_event("ui_accept", bottom_button_action_event)
 		InputMap.action_add_event(bottom_button_action, bottom_button_action_event)
 		
@@ -261,7 +261,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(top_button_action)
 		top_button_event = InputEventJoypadButton.new()
 		top_button_event.device = player_index
-		top_button_event.button_index = JOY_BUTTON_BACK
+		top_button_event.button_index = input_maps[player_index]["TOP_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(top_button_action, top_button_event)
 
 		var left_button_action: String
@@ -270,7 +270,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(left_button_action)
 		left_button_event = InputEventJoypadButton.new()
 		left_button_event.device = player_index
-		left_button_event.button_index = JOY_BUTTON_X
+		left_button_event.button_index = input_maps[player_index]["LEFT_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(left_button_action, left_button_event)
 
 
@@ -280,7 +280,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(menu_action)
 		menu_action_event = InputEventJoypadButton.new()
 		menu_action_event.device = player_index
-		menu_action_event.button_index = JOY_BUTTON_START
+		menu_action_event.button_index = input_maps[player_index]["menu_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(menu_action, menu_action_event)
 		InputMap.action_add_event("ui_cancel", menu_action_event)
 
@@ -290,7 +290,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(back_action)
 		back_action_event = InputEventJoypadButton.new()
 		back_action_event.device = player_index
-		back_action_event.button_index = JOY_BUTTON_BACK
+		back_action_event.button_index = input_maps[player_index]["back_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(back_action, back_action_event)
 
 		#
@@ -302,7 +302,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(D_Left_action)
 		D_Left_event = InputEventJoypadButton.new()
 		D_Left_event.device = player_index
-		D_Left_event.button_index = JOY_BUTTON_DPAD_LEFT
+		D_Left_event.button_index = input_maps[player_index]["D_LEFT_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_Left_action, D_Left_event)
 		
 		var D_Right_action: String
@@ -311,7 +311,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(D_Right_action)
 		D_Right_event = InputEventJoypadButton.new()
 		D_Right_event.device = player_index
-		D_Right_event.button_index = JOY_BUTTON_DPAD_RIGHT
+		D_Right_event.button_index = input_maps[player_index]["D_RIGHT_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_Right_action, D_Right_event)
 		
 		var D_UP_action: String
@@ -320,7 +320,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(D_UP_action)
 		D_UP_event = InputEventJoypadButton.new()
 		D_UP_event.device = player_index
-		D_UP_event.button_index = JOY_BUTTON_DPAD_UP
+		D_UP_event.button_index = input_maps[player_index]["D_UP_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_UP_action, D_UP_event)
 		
 		var D_Down_action: String
@@ -329,7 +329,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(D_Down_action)
 		D_Down_event = InputEventJoypadButton.new()
 		D_Down_event.device = player_index
-		D_Down_event.button_index = JOY_BUTTON_DPAD_DOWN
+		D_Down_event.button_index = input_maps[player_index]["D_DOWN_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_Down_action, D_Down_event)
 
 		#
@@ -341,7 +341,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(R_Trigger_action)
 		R_Trigger_event = InputEventJoypadMotion.new()
 		R_Trigger_event.device = player_index
-		R_Trigger_event.axis = JOY_AXIS_TRIGGER_RIGHT
+		R_Trigger_event.axis = input_maps[player_index]["R_Trigger_action{n}".format({"n":player_index})]
 		R_Trigger_event.axis_value = 1
 		InputMap.action_add_event(R_Trigger_action, R_Trigger_event)
 		
@@ -351,7 +351,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(L_Trigger_action)
 		L_Trigger_event = InputEventJoypadMotion.new()
 		L_Trigger_event.device = player_index
-		L_Trigger_event.axis = JOY_AXIS_TRIGGER_LEFT
+		L_Trigger_event.axis = input_maps[player_index]["L_Trigger_action{n}".format({"n":player_index})]
 		L_Trigger_event.axis_value = 1
 		InputMap.action_add_event(L_Trigger_action, L_Trigger_event)
 		
@@ -364,7 +364,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(R_Shoulder_action)
 		R_Shoulder_event = InputEventJoypadButton.new()
 		R_Shoulder_event.device = player_index
-		R_Shoulder_event.button_index = JOY_BUTTON_RIGHT_SHOULDER
+		R_Shoulder_event.button_index = input_maps[player_index]["R_Shoulder_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(R_Shoulder_action, R_Shoulder_event)
 		
 		var L_Shoulder_action: String
@@ -373,7 +373,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(L_Shoulder_action)
 		L_Shoulder_event = InputEventJoypadButton.new()
 		L_Shoulder_event.device = player_index
-		L_Shoulder_event.button_index = JOY_BUTTON_LEFT_SHOULDER
+		L_Shoulder_event.button_index = input_maps[player_index]["L_Shoulder_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(L_Shoulder_action, L_Shoulder_event)
 
 	else:
@@ -400,8 +400,8 @@ func add_controls_for_device(player_index: int, kb):
 			"R_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_RIGHT,
 			"L_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_LEFT,
 
-			"R_Shoulder_action{n}".format({"n":player_index}): JOY_BUTTON_RIGHT_SHOULDER,
-			"L_Shoulder_action{n}".format({"n":player_index}): JOY_BUTTON_LEFT_SHOULDER,
+			"R_Shoulder_action{n}".format({"n":player_index}): MOUSE_BUTTON_WHEEL_UP,
+			"L_Shoulder_action{n}".format({"n":player_index}): MOUSE_BUTTON_WHEEL_DOWN,
 		})
 
 		# Use keyboard
@@ -511,7 +511,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(right_button_action)
 		right_button_action_event = InputEventKey.new()
 		right_button_action_event.device = player_index
-		right_button_action_event.keycode = KEY_CTRL
+		right_button_action_event.keycode = input_maps[player_index]["RIGHT_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(right_button_action, right_button_action_event)
 		
 		var bottom_action: String
@@ -520,7 +520,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(bottom_action)
 		bottom_action_event = InputEventKey.new()
 		bottom_action_event.device = player_index
-		bottom_action_event.keycode = KEY_SPACE
+		bottom_action_event.keycode = input_maps[player_index]["BOTTOM_action{n}".format({"n":player_index})]
 		InputMap.action_add_event("ui_accept", bottom_action_event)
 		InputMap.action_add_event(bottom_action, bottom_action_event)
 		
@@ -530,7 +530,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(top_button_action)
 		top_button_event = InputEventKey.new()
 		top_button_event.device = player_index
-		top_button_event.keycode = KEY_E
+		top_button_event.keycode = input_maps[player_index]["TOP_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(top_button_action, top_button_event)
 
 		var left_button_action: String
@@ -539,7 +539,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(left_button_action)
 		left_button_event = InputEventKey.new()
 		left_button_event.device = player_index
-		left_button_event.keycode = KEY_R
+		left_button_event.keycode = input_maps[player_index]["LEFT_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(left_button_action, left_button_event)
 
 
@@ -549,7 +549,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(menu_action)
 		menu_action_event = InputEventJoypadButton.new()
 		menu_action_event.device = player_index
-		menu_action_event.button_index = JOY_BUTTON_START
+		menu_action_event.button_index = input_maps[player_index]["menu_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(menu_action, menu_action_event)
 
 		var back_action: String
@@ -558,7 +558,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(back_action)
 		back_action_event = InputEventJoypadButton.new()
 		back_action_event.device = player_index
-		back_action_event.button_index = JOY_BUTTON_BACK
+		back_action_event.button_index = input_maps[player_index]["back_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(back_action, back_action_event)
 
 		#
@@ -570,7 +570,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(D_Left_action)
 		D_Left_event = InputEventJoypadButton.new()
 		D_Left_event.device = player_index
-		D_Left_event.button_index = JOY_BUTTON_DPAD_LEFT
+		D_Left_event.button_index = input_maps[player_index]["D_LEFT_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_Left_action, D_Left_event)
 		
 		var D_Right_action: String
@@ -579,7 +579,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(D_Right_action)
 		D_Right_event = InputEventJoypadButton.new()
 		D_Right_event.device = player_index
-		D_Right_event.button_index = JOY_BUTTON_DPAD_RIGHT
+		D_Right_event.button_index = input_maps[player_index]["D_RIGHT_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_Right_action, D_Right_event)
 		
 		var D_UP_action: String
@@ -588,7 +588,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(D_UP_action)
 		D_UP_event = InputEventJoypadButton.new()
 		D_UP_event.device = player_index
-		D_UP_event.button_index = JOY_BUTTON_DPAD_UP
+		D_UP_event.button_index = input_maps[player_index]["D_UP_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_UP_action, D_UP_event)
 		
 		var D_Down_action: String
@@ -597,7 +597,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(D_Down_action)
 		D_Down_event = InputEventJoypadButton.new()
 		D_Down_event.device = player_index
-		D_Down_event.button_index = JOY_BUTTON_DPAD_DOWN
+		D_Down_event.button_index = input_maps[player_index]["D_DOWN_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_Down_action, D_Down_event)
 
 		#
@@ -609,7 +609,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(R_Trigger_action)
 		R_Trigger_event = InputEventJoypadMotion.new()
 		R_Trigger_event.device = player_index
-		R_Trigger_event.axis = JOY_AXIS_TRIGGER_RIGHT
+		R_Trigger_event.axis = input_maps[player_index]["R_Trigger_action{n}".format({"n":player_index})]
 		R_Trigger_event.axis_value = 1
 		InputMap.action_add_event(R_Trigger_action, R_Trigger_event)
 		
@@ -619,7 +619,7 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.add_action(L_Trigger_action)
 		L_Trigger_event = InputEventJoypadMotion.new()
 		L_Trigger_event.device = player_index
-		L_Trigger_event.axis = JOY_AXIS_TRIGGER_LEFT
+		L_Trigger_event.axis = input_maps[player_index]["L_Trigger_action{n}".format({"n":player_index})]
 		L_Trigger_event.axis_value = 1
 		InputMap.action_add_event(L_Trigger_action, L_Trigger_event)
 		
@@ -627,21 +627,21 @@ func add_controls_for_device(player_index: int, kb):
 		# Bumper buttons
 		#
 		var R_Shoulder_action: String
-		var R_Shoulder_event: InputEventJoypadButton
+		var R_Shoulder_event: InputEventMouseButton
 		R_Shoulder_action = "R_Shoulder_action{n}".format({"n":player_index})
 		InputMap.add_action(R_Shoulder_action)
-		R_Shoulder_event = InputEventJoypadButton.new()
+		R_Shoulder_event = InputEventMouseButton.new()
 		R_Shoulder_event.device = player_index
-		R_Shoulder_event.button_index = JOY_BUTTON_RIGHT_SHOULDER
+		R_Shoulder_event.button_index = input_maps[player_index]["R_Shoulder_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(R_Shoulder_action, R_Shoulder_event)
 		
 		var L_Shoulder_action: String
-		var L_Shoulder_event: InputEventJoypadButton
+		var L_Shoulder_event: InputEventMouseButton
 		L_Shoulder_action = "L_Shoulder_action{n}".format({"n":player_index})
 		InputMap.add_action(L_Shoulder_action)
-		L_Shoulder_event = InputEventJoypadButton.new()
+		L_Shoulder_event = InputEventMouseButton.new()
 		L_Shoulder_event.device = player_index
-		L_Shoulder_event.button_index = JOY_BUTTON_LEFT_SHOULDER
+		L_Shoulder_event.button_index = input_maps[player_index]["L_Shoulder_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(L_Shoulder_action, L_Shoulder_event)
 
 	print("Input Map: ", input_maps[player_index])
