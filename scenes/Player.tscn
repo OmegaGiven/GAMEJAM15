@@ -8,8 +8,8 @@ radius = 2.5
 height = 15.0
 
 [sub_resource type="Gradient" id="Gradient_47y5l"]
-offsets = PackedFloat32Array(0, 0.9, 0.980469)
-colors = PackedColorArray(1, 1, 1, 1, 0.396889, 0.396889, 0.396889, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.396889, 0.396889, 0.396889, 1, 0.16, 0.16, 0.16, 1, 0.03, 0.03, 0.03, 1)
 metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7jerq"]
@@ -24,7 +24,7 @@ fill_to = Vector2(1, 0.504274)
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -34,10 +34,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 0.745098, 0.537255, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:texture:fill_to")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.504274)]
+}
 
 [sub_resource type="Animation" id="Animation_rvnjp"]
 resource_name = "fire_flicker"
-length = 2.0
+length = 4.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -46,10 +70,10 @@ tracks/0/path = NodePath(".:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 0.4, 0.6, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1.5),
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [2.0, 1.75, 1.5, 1.25, 2.0]
+"values": [1.7, 1.25, 1.7]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -58,10 +82,22 @@ tracks/1/path = NodePath(".:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 2),
+"times": PackedFloat32Array(0, 2, 4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 0.745098, 0.537255, 1), Color(1, 0.490196, 0.34902, 1), Color(1, 0.745098, 0.537255, 1)]
+"values": [Color(1, 0.745098, 0.537255, 1), Color(1, 0.639216, 0.541176, 1), Color(1, 0.745098, 0.537255, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:texture:fill_to")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.72, 0.504), Vector2(0.76, 0.5), Vector2(0.72, 0.504)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kf1f8"]
@@ -206,8 +242,9 @@ position = Vector2(-0.5, 4)
 shape = SubResource("CapsuleShape2D_i3n8i")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-6, -5)
 color = Color(1, 0.745098, 0.537255, 1)
-energy = 1.325
+energy = 1.7
 texture = SubResource("GradientTexture2D_7jerq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
