@@ -6,7 +6,6 @@ func _ready():
 	canvas_modulate.color = Color(0, 0, 0, Settings.DARKNESS)
 	add_child(canvas_modulate)
 	spawn()
-	pass
 
 
 func spawn():
