@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cb8ebr1sk20qg"]
 
 [ext_resource type="Script" path="res://scenes/Tutorial/Tutorial Level.gd" id="1_ms747"]
-[ext_resource type="TileSet" uid="uid://bt5t54b5pbk7g" path="res://assets/main_tile_set.tres" id="2_gys0l"]
+[ext_resource type="TileSet" uid="uid://btimfvo83com8" path="res://assets/main_tile_set.tres" id="2_gys0l"]
 [ext_resource type="PackedScene" uid="uid://b4fs2fye857a2" path="res://scenes/Objects/Enemy1Spawner.tscn" id="2_r6nm6"]
 [ext_resource type="PackedScene" uid="uid://qfjk7m3llnyp" path="res://scenes/Objects/bonfire.tscn" id="5_2j62p"]
 [ext_resource type="PackedScene" uid="uid://de0xewjqcxhl8" path="res://scenes/Objects/tree1.tscn" id="5_7o1q4"]
