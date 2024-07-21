@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://7y7n6gb4o3to"]
+
+[ext_resource type="Texture2D" uid="uid://dqprf0io122dq" path="res://assets/Undead executioner puppet/png/summonIdle.png" id="1_irep3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fnwrd"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_2c75d"]
+resource_name = "Spirit_idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ed8xj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_786st"]
+_data = {
+"RESET": SubResource("Animation_ed8xj"),
+"Spirit_idle": SubResource("Animation_2c75d")
+}
+
+[node name="Spirit" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+shape = SubResource("CircleShape2D_fnwrd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_irep3")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_786st")
+}
+autoplay = "Spirit_idle"
+speed_scale = 0.5
