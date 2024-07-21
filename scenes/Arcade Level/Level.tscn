@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://iofifbdvmwp7"]
 
 [ext_resource type="PackedScene" uid="uid://dlu2scs1lvef7" path="res://scenes/Objects/Tower.tscn" id="2_howpl"]
-[ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Objects/Enemy1.tscn" id="3_ya4pk"]
+[ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Objects/Reaper.tscn" id="3_ya4pk"]
 [ext_resource type="PackedScene" uid="uid://edfeoj3jr33i" path="res://scenes/Objects/gold.tscn" id="4_5t734"]
 
 [node name="Level" type="Node2D"]

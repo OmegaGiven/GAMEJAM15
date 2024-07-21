@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb8ebr1sk20qg"]
+[gd_scene load_steps=10 format=3 uid="uid://cb8ebr1sk20qg"]
 
 [ext_resource type="Script" path="res://scenes/Tutorial/Tutorial Level.gd" id="1_ms747"]
 [ext_resource type="TileSet" uid="uid://bt5t54b5pbk7g" path="res://assets/main_tile_set.tres" id="2_gys0l"]
 [ext_resource type="PackedScene" uid="uid://b4fs2fye857a2" path="res://scenes/Objects/Enemy1Spawner.tscn" id="2_r6nm6"]
 [ext_resource type="PackedScene" uid="uid://qfjk7m3llnyp" path="res://scenes/Objects/bonfire.tscn" id="5_2j62p"]
 [ext_resource type="PackedScene" uid="uid://de0xewjqcxhl8" path="res://scenes/Objects/tree1.tscn" id="5_7o1q4"]
+[ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Objects/Reaper.tscn" id="5_bcxdk"]
 [ext_resource type="PackedScene" uid="uid://b3odxldeal1m0" path="res://scenes/Objects/tree2.tscn" id="6_7u6cr"]
+[ext_resource type="PackedScene" uid="uid://7y7n6gb4o3to" path="res://scenes/Objects/Spirit.tscn" id="6_8s1x8"]
 [ext_resource type="PackedScene" uid="uid://cd5dwhjw31sg1" path="res://scenes/Objects/tree3.tscn" id="7_2vpoy"]
 
 [node name="TutorialLevel" type="Node2D" groups=["LEVELS"]]
@@ -33,12 +35,14 @@ position = Vector2(-18, -545)
 position = Vector2(23.085, 583.805)
 
 [node name="Bonfire" parent="." instance=ExtResource("5_2j62p")]
+visible = false
 position = Vector2(12, 153)
 
-[node name="Tree15" parent="Bonfire" instance=ExtResource("6_7u6cr")]
-position = Vector2(-122, -162)
-rotation = 3.14159
-scale = Vector2(-1, -1)
+[node name="Enemy1" parent="." instance=ExtResource("5_bcxdk")]
+position = Vector2(-80, 152)
+
+[node name="Spirit" parent="." instance=ExtResource("6_8s1x8")]
+position = Vector2(-36, 118)
 
 [node name="Tree14" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(-19, 453)
@@ -204,3 +208,6 @@ scale = Vector2(-1, 1)
 
 [node name="Tree29" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(8, -89)
+
+[node name="Tree30" parent="." instance=ExtResource("6_7u6cr")]
+position = Vector2(-110, -9)
