@@ -4,11 +4,11 @@ extends CharacterBody2D
 @export var device_num = 0
 var player_name = 'player'
 var deadzone = 0.1
-const SPEED = 300.0
+const SPEED = 80.0
 var keyboard = false
 var free_cam = false
-var MAX_ZOOM = Vector2(5,5)
-var MIN_ZOOM = Vector2(0.25, 0.25)
+var MAX_ZOOM = Vector2(8,8)
+var MIN_ZOOM = Vector2(3, 3)
 const ZOOM_SPEED = 0.1
 var in_build_menu = false
 var in_placement_mode = false #this will allow you to be in a free cam mode to place the tower centered on camera
@@ -52,13 +52,21 @@ func move_camera():
 func _physics_process(_delta):
 	if not free_cam:
 		velocity = movement()
-		
-		#animation direction
-		if velocity == Vector2.ZERO:
-			pass #maintains dirtection when holding still
-		else:
-			$AnimationTree.set("parameters/BlendSpace2D/blend_position", velocity)
+		animation_manager(velocity)
 	move_and_slide()
+
+
+func animation_manager(velocity):
+		if velocity != Vector2.ZERO:
+			$AnimationTree.set("parameters/Running/blend_position", velocity)
+			$AnimationTree.set("parameters/Idle/blend_position", velocity)
+			$no_weapon_sprite_idle.hide()
+			$no_weapon_sprite_running.show()
+			$AnimationTree.get("parameters/playback").travel("Running")
+		else:
+			$no_weapon_sprite_idle.show()
+			$no_weapon_sprite_running.hide()
+			$AnimationTree.get("parameters/playback").travel("Idle")
 
 
 func _input(event):
