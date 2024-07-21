@@ -29,6 +29,7 @@ render_target_update_mode = 0
 [node name="PauseMenu" parent="HBoxContainer/SubViewportContainer" instance=ExtResource("3_baegg")]
 
 [node name="Dialogue" type="CanvasLayer" parent="HBoxContainer/SubViewportContainer"]
+visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/SubViewportContainer/Dialogue"]
 anchors_preset = 5
