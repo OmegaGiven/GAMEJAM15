@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=31 format=3 uid="uid://7384ya4k0hmm"]
-
+[gd_scene load_steps=32 format=3 uid="uid://7384ya4k0hmm"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_i7fl6"]
 [ext_resource type="Texture2D" uid="uid://bwrbib1s6omw" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Idle/Unarmed_Idle_full.png" id="2_auy33"]
@@ -378,9 +376,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_nmjqp")
-}
 tree_root = SubResource("AnimationNodeStateMachine_kn2jp")
 anim_player = NodePath("../PlayerAnimation")
 parameters/Idle/blend_position = Vector2(-0.00305063, 0.957672)
