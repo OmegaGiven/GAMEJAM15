@@ -35,7 +35,6 @@ position = Vector2(-18, -545)
 position = Vector2(23.085, 583.805)
 
 [node name="Bonfire" parent="." instance=ExtResource("5_2j62p")]
-visible = false
 position = Vector2(12, 153)
 
 [node name="Enemy1" parent="." instance=ExtResource("5_bcxdk")]

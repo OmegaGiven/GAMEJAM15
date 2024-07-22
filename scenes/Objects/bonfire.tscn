@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://qfjk7m3llnyp"]
+[gd_scene load_steps=5 format=3 uid="uid://qfjk7m3llnyp"]
+
+[ext_resource type="Texture2D" uid="uid://boverf0l7xgck" path="res://assets/Free-Undead-Tileset-Top-Down-Pixel-Art/PNG/Objects_separately/Crystal_shadow1_2.png" id="1_fv51k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c5nnu"]
 
 [sub_resource type="Gradient" id="Gradient_37b6f"]
-offsets = PackedFloat32Array(0.0571429, 0.133333, 0.711111)
-colors = PackedColorArray(1, 1, 1, 1, 0.930159, 0.930159, 0.930159, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.1, 0.2, 0.8)
+colors = PackedColorArray(1, 1, 1, 1, 0.930159, 0.930159, 0.930159, 1, 0.958095, 0.958095, 0.958095, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t0yjx"]
 gradient = SubResource("Gradient_37b6f")
@@ -12,6 +15,7 @@ width = 750
 height = 750
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.22)
 
 [node name="Bonfire" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -21,6 +25,12 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_c5nnu")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.509804, 0.952941, 0.352941, 1)
+energy = 1.15
 texture = SubResource("GradientTexture2D_t0yjx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_fv51k")

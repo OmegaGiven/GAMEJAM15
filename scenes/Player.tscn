@@ -9,7 +9,7 @@ radius = 2.5
 height = 15.0
 
 [sub_resource type="Gradient" id="Gradient_47y5l"]
-offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+offsets = PackedFloat32Array(0, 0.2, 0.7, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.396889, 0.396889, 0.396889, 1, 0.16, 0.16, 0.16, 1, 0.03, 0.03, 0.03, 1)
 metadata/_snap_enabled = true
 
@@ -376,6 +376,9 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nmjqp")
+}
 tree_root = SubResource("AnimationNodeStateMachine_kn2jp")
 anim_player = NodePath("../PlayerAnimation")
 parameters/Idle/blend_position = Vector2(-0.00305063, 0.957672)
