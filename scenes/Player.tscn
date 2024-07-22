@@ -9,7 +9,7 @@ radius = 2.5
 height = 15.0
 
 [sub_resource type="Gradient" id="Gradient_47y5l"]
-offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+offsets = PackedFloat32Array(0, 0.2, 0.7, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.396889, 0.396889, 0.396889, 1, 0.16, 0.16, 0.16, 1, 0.03, 0.03, 0.03, 1)
 metadata/_snap_enabled = true
 

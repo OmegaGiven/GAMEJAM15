@@ -5,8 +5,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c5nnu"]
 
 [sub_resource type="Gradient" id="Gradient_37b6f"]
-offsets = PackedFloat32Array(0.05, 0.231818, 0.827273)
-colors = PackedColorArray(1, 1, 1, 1, 0.930159, 0.930159, 0.930159, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.1, 0.2, 0.8)
+colors = PackedColorArray(1, 1, 1, 1, 0.930159, 0.930159, 0.930159, 1, 0.958095, 0.958095, 0.958095, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t0yjx"]
 gradient = SubResource("Gradient_37b6f")
@@ -14,7 +15,7 @@ width = 750
 height = 750
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0.21)
+fill_to = Vector2(0.5, 0.22)
 
 [node name="Bonfire" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -25,7 +26,7 @@ shape = SubResource("CapsuleShape2D_c5nnu")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.509804, 0.952941, 0.352941, 1)
-energy = 1.2
+energy = 1.15
 texture = SubResource("GradientTexture2D_t0yjx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
