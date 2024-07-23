@@ -18,8 +18,11 @@ var owned_towers = []
 var BuildMenu = load(GamePaths.BuildMenu)
 var buildmenu = BuildMenu.instantiate()
 
+@onready var animation_tree : AnimationTree = $AnimationTree
 
-#func _ready():
+func _ready():
+	animation_tree.active = true
+	$running_attack_sword.hide()
 	#SplitScreenFunctionality.player_characters[device_num]["viewport"].add_child(buildmenu)
 	#SplitScreenFunctionality.player_characters[device_num]["viewport"].get_node(buildmenu).hide()
 
@@ -52,21 +55,46 @@ func move_camera():
 func _physics_process(_delta):
 	if not free_cam:
 		velocity = movement()
-		animation_manager(velocity)
 	move_and_slide()
 
-
 func animation_manager(velocity):
-		if velocity != Vector2.ZERO:
-			$AnimationTree.set("parameters/Running/blend_position", velocity)
-			$AnimationTree.set("parameters/Idle/blend_position", velocity)
-			$no_weapon_sprite_idle.hide()
-			$no_weapon_sprite_running.show()
-			$AnimationTree.get("parameters/playback").travel("Running")
-		else:
+		if velocity == Vector2.ZERO:
+			animation_tree["parameters/conditions/idle"] = true
+			animation_tree["parameters/conditions/is_moving"] = false
 			$no_weapon_sprite_idle.show()
 			$no_weapon_sprite_running.hide()
-			$AnimationTree.get("parameters/playback").travel("Idle")
+		else:
+			animation_tree["parameters/conditions/idle"] = false
+			animation_tree["parameters/conditions/is_moving"] = true
+			$no_weapon_sprite_idle.hide()
+			$no_weapon_sprite_running.show()
+			animation_tree["parameters/Idle/blend_position"] = velocity
+			animation_tree["parameters/Running/blend_position"] = velocity
+			animation_tree["parameters/Attack/blend_position"] = velocity
+		if Input.is_action_just_pressed("R_Trigger_action{n}".format({"n":device_num})):
+			# do attack Right hand
+			animation_tree["parameters/conditions/attack"] = true
+			$no_weapon_sprite_idle.hide()
+			$no_weapon_sprite_running.hide()
+			$running_attack_sword.show()
+		else:
+			#animation_tree["parameters/conditions/attack"] = false
+			#$running_attack_sword.hide()
+			pass
+		
+		
+		
+#programatically swithcing blendspace
+		#if velocity != Vector2.ZERO:
+			#animation_tree.set("parameters/Running/blend_position", velocity)
+			#animation_tree.set("parameters/Idle/blend_position", velocity)
+			#$no_weapon_sprite_idle.hide()
+			#$no_weapon_sprite_running.show()
+			#animation_tree.get("parameters/playback").travel("Running")
+		#else:
+			#$no_weapon_sprite_idle.show()
+			#$no_weapon_sprite_running.hide()
+			#animation_tree.get("parameters/playback").travel("Idle")
 
 
 func _input(event):
@@ -84,10 +112,9 @@ func _input(event):
 	if event.is_action_pressed("LEFT_action{n}".format({"n":device_num})) and !in_placement_mode:
 		toggle_build_menu()
 		
-	#print(event)
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			#print("scrolling")
+	if event.is_action_pressed("L_Trigger_action{n}".format({"n":device_num})):
+		# do attack Left hand
+		pass
 
 
 func toggle_build_menu():
@@ -105,9 +132,7 @@ func toggle_build_menu():
 			#SplitScreenFunctionality.player_characters[device_num]["viewport"].get_node(buildmenu).hide()
 			print("Closing Crafting Menu")
 
-
-func _process(_delta):
-	
+func zoom_process():
 	if keyboard: #keybboard zoom
 		if Input.is_action_just_pressed("R_Shoulder_action{n}".format({"n":device_num})):
 			var zoom_check = Vector2(SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.x + ZOOM_SPEED,SplitScreenFunctionality.player_characters[device_num]["camera"].zoom.y + ZOOM_SPEED)
@@ -128,6 +153,9 @@ func _process(_delta):
 				SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
 
 
+func _process(_delta):
+	animation_manager(velocity)
+	zoom_process()
 	if free_cam or in_placement_mode:
 		move_camera()
 	else:

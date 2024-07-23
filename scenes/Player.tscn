@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://7384ya4k0hmm"]
+[gd_scene load_steps=48 format=3 uid="uid://7384ya4k0hmm"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_i7fl6"]
 [ext_resource type="Texture2D" uid="uid://bwrbib1s6omw" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Idle/Unarmed_Idle_full.png" id="2_auy33"]
 [ext_resource type="Texture2D" uid="uid://bmxbcs64ng4me" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Run/Unarmed_Run_full.png" id="3_tfxiw"]
+[ext_resource type="Texture2D" uid="uid://dhx1n5jno1ust" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Sword_Run_Attack/Sword_Run_Attack_full.png" id="4_xr028"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3n8i"]
 radius = 2.5
@@ -128,6 +129,18 @@ tracks/1/path = NodePath("no_weapon_sprite_running:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("running_attack_sword:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -265,6 +278,70 @@ tracks/0/keys = {
 "values": [24, 25, 26, 27, 28, 29, 30, 31]
 }
 
+[sub_resource type="Animation" id="Animation_pa5ux"]
+resource_name = "running_attack_left"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("running_attack_sword:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_12rmn"]
+resource_name = "running_atack_down"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("running_attack_sword:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_cxu31"]
+resource_name = "running_attack_right"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("running_attack_sword:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21, 22, 23]
+}
+
+[sub_resource type="Animation" id="Animation_3nlx1"]
+resource_name = "running_attack_up"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("running_attack_sword:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30, 31]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nmjqp"]
 _data = {
 "RESET": SubResource("Animation_jvk2e"),
@@ -272,11 +349,38 @@ _data = {
 "idle_left": SubResource("Animation_51ncs"),
 "idle_right": SubResource("Animation_dur83"),
 "idle_up": SubResource("Animation_vxcqp"),
+"running_attack_down": SubResource("Animation_12rmn"),
+"running_attack_left": SubResource("Animation_pa5ux"),
+"running_attack_right": SubResource("Animation_cxu31"),
+"running_attack_up": SubResource("Animation_3nlx1"),
 "running_down": SubResource("Animation_r3x1j"),
 "running_left": SubResource("Animation_mxfj2"),
 "running_right": SubResource("Animation_psesv"),
 "running_up": SubResource("Animation_daku2")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_temh0"]
+animation = &"running_attack_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_42xw2"]
+animation = &"running_attack_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dp5av"]
+animation = &"running_attack_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ppu7i"]
+animation = &"running_attack_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bxq8m"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_temh0")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_42xw2")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_dp5av")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ppu7i")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a3ukl"]
 animation = &"idle_right"
@@ -327,14 +431,43 @@ blend_mode = 1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7dx1"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p0jru"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jbmai"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rw6n0"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_le481"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jluu8"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_85hx5"]
+advance_mode = 2
+advance_condition = &"attack"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kn2jp"]
-states/End/position = Vector2(993, 179)
+states/Attack/node = SubResource("AnimationNodeBlendSpace2D_bxq8m")
+states/Attack/position = Vector2(640, 60)
+states/End/position = Vector2(1073, 184)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_0ah4w")
 states/Idle/position = Vector2(529, 184)
 states/Running/node = SubResource("AnimationNodeBlendSpace2D_an5yo")
-states/Running/position = Vector2(695, 184)
+states/Running/position = Vector2(749, 184)
 states/Start/position = Vector2(325, 184)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v7dx1")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v7dx1"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_p0jru"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_jbmai"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_rw6n0"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_le481"), "Attack", "Running", SubResource("AnimationNodeStateMachineTransition_jluu8"), "Running", "Attack", SubResource("AnimationNodeStateMachineTransition_85hx5")]
+graph_offset = Vector2(-142, -40)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
@@ -370,16 +503,25 @@ texture = ExtResource("3_tfxiw")
 hframes = 8
 vframes = 4
 
+[node name="running_attack_sword" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, 1)
+texture = ExtResource("4_xr028")
+hframes = 8
+vframes = 4
+
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nmjqp")
 }
+speed_scale = 0.25
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_nmjqp")
-}
 tree_root = SubResource("AnimationNodeStateMachine_kn2jp")
 anim_player = NodePath("../PlayerAnimation")
+parameters/conditions/attack = false
+parameters/conditions/idle = false
+parameters/conditions/is_moving = false
+parameters/Attack/blend_position = Vector2(0, 0.99262)
 parameters/Idle/blend_position = Vector2(-0.00305063, 0.957672)
 parameters/Running/blend_position = Vector2(-0.19097, 0.365942)
