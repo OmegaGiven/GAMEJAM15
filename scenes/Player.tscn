@@ -292,8 +292,8 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-
 "values": [8, 9, 11, 13]
+
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -314,6 +314,7 @@ tracks/1/keys = {
 }
 
 
+
 [sub_resource type="Animation" id="Animation_12rmn"]
 resource_name = "running_atack_down"
 length = 0.4
@@ -327,8 +328,8 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-
 "values": [0, 2, 3, 5]
+
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -669,8 +670,7 @@ parameters/Attack/blend_position = Vector2(0, 0.99262)
 parameters/Idle/blend_position = Vector2(-0.00305063, 0.957672)
 parameters/Running/blend_position = Vector2(-0.19097, 0.365942)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="attack_box" type="Area2D" parent="."]
 
-[node name="attack_box" type="CollisionPolygon2D" parent="Area2D"]
-scale = Vector2(1, 1)
+[node name="attack_box" type="CollisionPolygon2D" parent="attack_box"]
 polygon = PackedVector2Array(-17.5, 15, -11.25, 20, -5, 23.75, 5, 23.75, 11.25, 20, 17.5, 15, 0, 0)
