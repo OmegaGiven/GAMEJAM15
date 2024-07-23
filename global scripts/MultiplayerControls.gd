@@ -395,10 +395,10 @@ func add_controls_for_device(player_index: int, kb):
 			"D_LEFT_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_LEFT,
 			"D_RIGHT_action{n}".format({"n":player_index}):JOY_BUTTON_DPAD_RIGHT,
 			"D_UP_action{n}".format({"n":player_index}): JOY_BUTTON_DPAD_UP, 
-			"D_DOWN_action{n}".format({"n":player_index}): KEY_Z, 
+			"D_DOWN_action{n}".format({"n":player_index}): KEY_C, 
 			
-			"R_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_RIGHT,
-			"L_Trigger_action{n}".format({"n":player_index}): JOY_AXIS_TRIGGER_LEFT,
+			"R_Trigger_action{n}".format({"n":player_index}): MOUSE_BUTTON_LEFT, # YES these are inversed but just think about it for 1 sec
+			"L_Trigger_action{n}".format({"n":player_index}): MOUSE_BUTTON_RIGHT,
 
 			"R_Shoulder_action{n}".format({"n":player_index}): MOUSE_BUTTON_WHEEL_UP,
 			"L_Shoulder_action{n}".format({"n":player_index}): MOUSE_BUTTON_WHEEL_DOWN,
@@ -592,35 +592,33 @@ func add_controls_for_device(player_index: int, kb):
 		InputMap.action_add_event(D_UP_action, D_UP_event)
 		
 		var D_Down_action: String
-		var D_Down_event: InputEventJoypadButton
+		var D_Down_event: InputEventKey
 		D_Down_action = "D_DOWN_action{n}".format({"n":player_index})
 		InputMap.add_action(D_Down_action)
-		D_Down_event = InputEventJoypadButton.new()
+		D_Down_event = InputEventKey.new()
 		D_Down_event.device = player_index
-		D_Down_event.button_index = input_maps[player_index]["D_DOWN_action{n}".format({"n":player_index})]
+		D_Down_event.keycode = input_maps[player_index]["D_DOWN_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(D_Down_action, D_Down_event)
 
 		#
 		# Trigger buttons
 		#
 		var R_Trigger_action: String
-		var R_Trigger_event: InputEventJoypadMotion
+		var R_Trigger_event: InputEventMouseButton
 		R_Trigger_action = "R_Trigger_action{n}".format({"n":player_index})
 		InputMap.add_action(R_Trigger_action)
-		R_Trigger_event = InputEventJoypadMotion.new()
+		R_Trigger_event = InputEventMouseButton.new()
 		R_Trigger_event.device = player_index
-		R_Trigger_event.axis = input_maps[player_index]["R_Trigger_action{n}".format({"n":player_index})]
-		R_Trigger_event.axis_value = 1
+		R_Trigger_event.button_index = input_maps[player_index]["R_Trigger_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(R_Trigger_action, R_Trigger_event)
 		
 		var L_Trigger_action: String
-		var L_Trigger_event: InputEventJoypadMotion
+		var L_Trigger_event: InputEventMouseButton
 		L_Trigger_action = "L_Trigger_action{n}".format({"n":player_index})
 		InputMap.add_action(L_Trigger_action)
-		L_Trigger_event = InputEventJoypadMotion.new()
+		L_Trigger_event = InputEventMouseButton.new()
 		L_Trigger_event.device = player_index
-		L_Trigger_event.axis = input_maps[player_index]["L_Trigger_action{n}".format({"n":player_index})]
-		L_Trigger_event.axis_value = 1
+		L_Trigger_event.button_index = input_maps[player_index]["L_Trigger_action{n}".format({"n":player_index})]
 		InputMap.action_add_event(L_Trigger_action, L_Trigger_event)
 		
 		#
