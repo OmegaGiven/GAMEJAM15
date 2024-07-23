@@ -41,14 +41,16 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_44ekb"]
-radius = 10.25
-height = 40.0
+height = 38.0
 
 [node name="Tree2" type="StaticBody2D"]
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(19, -37)
+texture_filter = 1
+position = Vector2(-1, 1)
 texture = ExtResource("1_5vv1r")
+offset = Vector2(20, -38)
 hframes = 6
 vframes = 3
 frame = 6
@@ -61,6 +63,6 @@ autoplay = "midium_tree"
 speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(-1, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_44ekb")

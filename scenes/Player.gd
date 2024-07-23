@@ -61,40 +61,47 @@ func animation_manager(velocity):
 		if velocity == Vector2.ZERO:
 			animation_tree["parameters/conditions/idle"] = true
 			animation_tree["parameters/conditions/is_moving"] = false
-			$no_weapon_sprite_idle.show()
-			$no_weapon_sprite_running.hide()
+			if !animation_tree["parameters/conditions/attack"]:
+				is_idle()
 		else:
 			animation_tree["parameters/conditions/idle"] = false
 			animation_tree["parameters/conditions/is_moving"] = true
-			$no_weapon_sprite_idle.hide()
-			$no_weapon_sprite_running.show()
+			if !animation_tree["parameters/conditions/attack"]:
+				is_moving()
+
 			animation_tree["parameters/Idle/blend_position"] = velocity
 			animation_tree["parameters/Running/blend_position"] = velocity
 			animation_tree["parameters/Attack/blend_position"] = velocity
 		if Input.is_action_just_pressed("R_Trigger_action{n}".format({"n":device_num})):
 			# do attack Right hand
 			animation_tree["parameters/conditions/attack"] = true
-			$no_weapon_sprite_idle.hide()
-			$no_weapon_sprite_running.hide()
-			$running_attack_sword.show()
-		else:
-			#animation_tree["parameters/conditions/attack"] = false
-			#$running_attack_sword.hide()
-			pass
-		
-		
-		
-#programatically swithcing blendspace
-		#if velocity != Vector2.ZERO:
-			#animation_tree.set("parameters/Running/blend_position", velocity)
-			#animation_tree.set("parameters/Idle/blend_position", velocity)
-			#$no_weapon_sprite_idle.hide()
-			#$no_weapon_sprite_running.show()
-			#animation_tree.get("parameters/playback").travel("Running")
-		#else:
-			#$no_weapon_sprite_idle.show()
-			#$no_weapon_sprite_running.hide()
+
+
+##programatically swithcing blendspace
+		#if velocity == Vector2.ZERO:
 			#animation_tree.get("parameters/playback").travel("Idle")
+		#else:
+			#animation_tree["parameters/Idle/blend_position"] = velocity
+			#animation_tree["parameters/Running/blend_position"] = velocity
+			#animation_tree["parameters/Attack/blend_position"] = velocity
+			#animation_tree.get("parameters/playback").travel("Running")
+
+func is_not_attacking():
+	animation_tree["parameters/conditions/attack"] = false
+	$running_attack_sword.hide()
+
+func is_attacking():
+	$no_weapon_sprite_idle.hide()
+	$no_weapon_sprite_running.hide()
+	$running_attack_sword.show()
+
+func is_moving():
+	$no_weapon_sprite_idle.hide()
+	$no_weapon_sprite_running.show()
+
+func is_idle():
+	$no_weapon_sprite_idle.show()
+	$no_weapon_sprite_running.hide()
 
 
 func _input(event):

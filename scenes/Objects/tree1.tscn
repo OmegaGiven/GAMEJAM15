@@ -48,14 +48,17 @@ radius = 10.25
 height = 40.0
 
 [node name="tree1" type="StaticBody2D"]
+y_sort_enabled = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(22, -36)
+position = Vector2(22, -35)
 occluder = SubResource("OccluderPolygon2D_pndmw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(22, -36)
+texture_filter = 1
+position = Vector2(1, -2)
 texture = ExtResource("1_1o1ir")
+offset = Vector2(21, -34)
 hframes = 6
 vframes = 3
 
@@ -67,6 +70,6 @@ autoplay = "big_tree"
 speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 9)
+position = Vector2(2, 8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iqwli")
