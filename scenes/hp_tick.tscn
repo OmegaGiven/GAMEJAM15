@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvawltvubhpbh"]
+
+[ext_resource type="Texture2D" uid="uid://8scuk30js78" path="res://assets/Free-Undead-Tileset-Top-Down-Pixel-Art/PNG/basic life bars a icons .png" id="1_3rr6x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7rrq"]
+atlas = ExtResource("1_3rr6x")
+region = Rect2(148, 4, 3, 5)
+
+[node name="HpTick" type="NinePatchRect"]
+custom_minimum_size = Vector2(3, 5)
+texture = SubResource("AtlasTexture_m7rrq")
