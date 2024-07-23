@@ -60,10 +60,17 @@ func _on_joy_connection_changed(device: int, connected: bool):
 		remove_player(device)
 		print("Removed player index {d} from the world.".format({"d":device}))
 		print("Disconnected device {d}.".format({"d":device}))
+		if len(players) == 0:
+			print("Adding default keyboard controls")
+			keyboard = true
+			add_player(0)
+			
 
 func remove_player(player_index: int) -> void:
 	emit_signal("disconnected", players[player_index].player_name)
 	print("Player Removed: ", players[player_index].player_name)
+	players.pop_at(player_index)
+
 
 func add_player(player_index: int) -> void:
 	# `player_index` is the player array `players` also their joystick number

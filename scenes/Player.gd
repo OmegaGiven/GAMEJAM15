@@ -14,6 +14,7 @@ var in_build_menu = false
 var in_placement_mode = false #this will allow you to be in a free cam mode to place the tower centered on camera
 var resources: int = 10000
 var owned_towers = []
+var disconnected = false
 
 var BuildMenu = load(GamePaths.BuildMenu)
 var buildmenu = BuildMenu.instantiate()
@@ -57,6 +58,7 @@ func _physics_process(_delta):
 		velocity = movement()
 	move_and_slide()
 
+
 func animation_manager(velocity):
 		if velocity == Vector2.ZERO:
 			animation_tree["parameters/conditions/idle"] = true
@@ -68,7 +70,7 @@ func animation_manager(velocity):
 			animation_tree["parameters/conditions/is_moving"] = true
 			if !animation_tree["parameters/conditions/attack"]:
 				is_moving()
-
+			$Area2D.rotation = calculate_vector_degree()
 			animation_tree["parameters/Idle/blend_position"] = velocity
 			animation_tree["parameters/Running/blend_position"] = velocity
 			animation_tree["parameters/Attack/blend_position"] = velocity
@@ -85,6 +87,12 @@ func animation_manager(velocity):
 			#animation_tree["parameters/Running/blend_position"] = velocity
 			#animation_tree["parameters/Attack/blend_position"] = velocity
 			#animation_tree.get("parameters/playback").travel("Running")
+
+
+func calculate_vector_degree():
+	var angle = ((velocity / SPEED).angle()) - (PI / 2) #aka 90 degrees
+	return angle
+
 
 func is_not_attacking():
 	animation_tree["parameters/conditions/attack"] = false
