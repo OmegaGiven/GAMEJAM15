@@ -24,9 +24,7 @@ var buildmenu = BuildMenu.instantiate()
 func _ready():
 	animation_tree.active = true
 	$running_attack_sword.hide()
-	#SplitScreenFunctionality.player_characters[device_num]["viewport"].add_child(buildmenu)
-	#SplitScreenFunctionality.player_characters[device_num]["viewport"].get_node(buildmenu).hide()
-
+	$attack_box.hide()
 
 func movement():
 	# produces velocity by returning Vector2D
@@ -70,29 +68,21 @@ func animation_manager(velocity):
 			animation_tree["parameters/conditions/is_moving"] = true
 			if !animation_tree["parameters/conditions/attack"]:
 				is_moving()
-			$Area2D.rotation = calculate_vector_degree()
+			$attack_box.rotation = calculate_vector_degree()
 			animation_tree["parameters/Idle/blend_position"] = velocity
 			animation_tree["parameters/Running/blend_position"] = velocity
 			animation_tree["parameters/Attack/blend_position"] = velocity
 		if Input.is_action_just_pressed("R_Trigger_action{n}".format({"n":device_num})):
 			# do attack Right hand
 			animation_tree["parameters/conditions/attack"] = true
-
-
-##programatically swithcing blendspace
-		#if velocity == Vector2.ZERO:
-			#animation_tree.get("parameters/playback").travel("Idle")
-		#else:
-			#animation_tree["parameters/Idle/blend_position"] = velocity
-			#animation_tree["parameters/Running/blend_position"] = velocity
-			#animation_tree["parameters/Attack/blend_position"] = velocity
-			#animation_tree.get("parameters/playback").travel("Running")
+			$attack_box.show()
+			await get_tree().create_timer(0.4).timeout
+			$attack_box.hide()
 
 
 func calculate_vector_degree():
 	var angle = ((velocity / SPEED).angle()) - (PI / 2) #aka 90 degrees
 	return angle
-
 
 func is_not_attacking():
 	animation_tree["parameters/conditions/attack"] = false
@@ -126,7 +116,7 @@ func _input(event):
 	# Open X Craft Menu
 	if event.is_action_pressed("LEFT_action{n}".format({"n":device_num})) and !in_placement_mode:
 		toggle_build_menu()
-		
+
 	if event.is_action_pressed("L_Trigger_action{n}".format({"n":device_num})):
 		# do attack Left hand
 		pass
