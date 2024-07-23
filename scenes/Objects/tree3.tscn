@@ -44,15 +44,18 @@ _data = {
 }
 
 [node name="Tree3" type="StaticBody2D"]
+y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 6)
+position = Vector2(-1, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_r1adf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(36, -43)
+texture_filter = 1
+position = Vector2(-1, -4)
 texture = ExtResource("1_jynnc")
+offset = Vector2(37, -39)
 hframes = 6
 vframes = 3
 frame = 17
