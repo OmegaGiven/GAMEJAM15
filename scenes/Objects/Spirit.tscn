@@ -75,6 +75,7 @@ _data = {
 }
 
 [node name="Spirit" type="CharacterBody2D"]
+texture_filter = 1
 script = ExtResource("1_psjra")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

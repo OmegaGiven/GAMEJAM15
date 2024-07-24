@@ -11,10 +11,20 @@ var destination_list = []
 
 """
 Priority:
-- If boss gets hit: summon X minions where x = health diff / 10 
+- If boss gets hit: summon X minions where x = health diff / 10
+
+idle: wanders around the top area
+
+smaller guys wander toward closes light source
+
 1. go toward player that attacked it
 
 """
+
+func _ready():
+	$reaper_attack.hide()
+	$reaper_death.hide()
+	self.add_to_group("enemy")
 
 func detect_tower():
 	pass
@@ -39,10 +49,20 @@ func _physics_process(delta):
 	pass
 
 
-#if cooldown use timers get_tree().timer(cooldown)
 func _process(delta):
-# detect stuff
-	pass
+	if health <= 0:
+		seppuku()
+
+
+func seppuku():
+	$reaper_idle.hide()
+	$reaper_death.show()
+	$AnimationPlayer.play("death")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "death":
+		self.queue_free()
 
 
 var objects_in_detection_area = []

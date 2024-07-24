@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var device_num = 0
 var player_name = 'player'
 var deadzone = 0.1
-const SPEED = 80.0
+const SPEED = 70.0
 var keyboard = false
 var free_cam = false
 var MAX_ZOOM = Vector2(8,8)
@@ -12,7 +12,7 @@ var MIN_ZOOM = Vector2(3, 3)
 const ZOOM_SPEED = 0.1
 var in_build_menu = false
 var in_placement_mode = false #this will allow you to be in a free cam mode to place the tower centered on camera
-var resources: int = 10000
+var resources: int = 100
 var owned_towers = []
 var disconnected = false
 var health = 100
@@ -169,8 +169,7 @@ func _process(_delta):
 		SplitScreenFunctionality.player_characters[device_num]["camera"].position = self.position
 
 
-
 func _on_attack_box_body_entered(body):
 	print(body)
-	if body != null and body != self:
+	if body in get_tree().get_nodes_in_group("enemy"):
 		body.health -= damage
