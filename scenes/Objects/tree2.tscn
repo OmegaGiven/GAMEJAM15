@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3odxldeal1m0"]
+[gd_scene load_steps=7 format=3 uid="uid://b3odxldeal1m0"]
 
+[ext_resource type="Script" path="res://scenes/Objects/tree2.gd" id="1_4e60s"]
 [ext_resource type="Texture2D" uid="uid://vsa84k0fobky" path="res://assets/Free-Undead-Tileset-Top-Down-Pixel-Art/Tiled_files/SpookyTrees.png" id="1_5vv1r"]
 
 [sub_resource type="Animation" id="Animation_oj164"]
@@ -45,6 +46,7 @@ height = 38.0
 
 [node name="Tree2" type="StaticBody2D"]
 y_sort_enabled = true
+script = ExtResource("1_4e60s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

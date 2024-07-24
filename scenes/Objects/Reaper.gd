@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
-var Health = 100
+
+@export var health = 100
+@export var type = "enemy"
+
 var cooldown = 1 #in seconds
 var destination_list = []
 

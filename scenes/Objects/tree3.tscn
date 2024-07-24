@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd5dwhjw31sg1"]
+[gd_scene load_steps=7 format=3 uid="uid://cd5dwhjw31sg1"]
 
 [ext_resource type="Texture2D" uid="uid://vsa84k0fobky" path="res://assets/Free-Undead-Tileset-Top-Down-Pixel-Art/Tiled_files/SpookyTrees.png" id="1_jynnc"]
+[ext_resource type="Script" path="res://scenes/Objects/tree3.gd" id="1_wyl8d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r1adf"]
 radius = 8.0
@@ -45,6 +46,7 @@ _data = {
 
 [node name="Tree3" type="StaticBody2D"]
 y_sort_enabled = true
+script = ExtResource("1_wyl8d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 4)

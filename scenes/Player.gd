@@ -15,6 +15,8 @@ var in_placement_mode = false #this will allow you to be in a free cam mode to p
 var resources: int = 10000
 var owned_towers = []
 var disconnected = false
+var health = 100
+@export var damage = 1
 
 var BuildMenu = load(GamePaths.BuildMenu)
 var buildmenu = BuildMenu.instantiate()
@@ -75,9 +77,9 @@ func animation_manager(velocity):
 		if Input.is_action_just_pressed("R_Trigger_action{n}".format({"n":device_num})):
 			# do attack Right hand
 			animation_tree["parameters/conditions/attack"] = true
-			$attack_box.show()
+			$attack_box.monitoring = true
 			await get_tree().create_timer(0.4).timeout
-			$attack_box.hide()
+			$attack_box.monitoring = false
 
 
 func calculate_vector_degree():
@@ -166,3 +168,9 @@ func _process(_delta):
 	else:
 		SplitScreenFunctionality.player_characters[device_num]["camera"].position = self.position
 
+
+
+func _on_attack_box_body_entered(body):
+	print(body)
+	if body != null and body != self:
+		body.health -= damage
