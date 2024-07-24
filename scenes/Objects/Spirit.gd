@@ -8,6 +8,7 @@ const SPEED = 80.0
 
 func _ready():
 	$"death animation".hide()
+	self.add_to_group("enemy")
 
 
 func _process(delta):

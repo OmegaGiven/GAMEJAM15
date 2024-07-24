@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb8ebr1sk20qg"]
+[gd_scene load_steps=9 format=3 uid="uid://cb8ebr1sk20qg"]
 
 [ext_resource type="Script" path="res://scenes/Tutorial/Tutorial Level.gd" id="1_ms747"]
 [ext_resource type="TileSet" uid="uid://bt5t54b5pbk7g" path="res://assets/main_tile_set.tres" id="2_gys0l"]
-[ext_resource type="PackedScene" uid="uid://b4fs2fye857a2" path="res://scenes/Objects/Enemy1Spawner.tscn" id="2_r6nm6"]
 [ext_resource type="PackedScene" uid="uid://qfjk7m3llnyp" path="res://scenes/Objects/bonfire.tscn" id="5_2j62p"]
 [ext_resource type="PackedScene" uid="uid://de0xewjqcxhl8" path="res://scenes/Objects/tree1.tscn" id="5_7o1q4"]
 [ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Objects/Reaper.tscn" id="5_bcxdk"]
@@ -31,14 +30,11 @@ layer_0/tile_data = PackedInt32Array(-131086, 131072, 15, -65550, 131072, 16, -1
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
 
-[node name="Enemy1Spawner" parent="." instance=ExtResource("2_r6nm6")]
-position = Vector2(-18, -545)
-
 [node name="Tutorial Spawn" type="Marker2D" parent="."]
 position = Vector2(23.085, 583.805)
 
 [node name="Bonfire" parent="." instance=ExtResource("5_2j62p")]
-position = Vector2(31, 128)
+position = Vector2(21, 130)
 
 [node name="Enemy1" parent="." instance=ExtResource("5_bcxdk")]
 position = Vector2(1, -418)
@@ -150,7 +146,7 @@ scale = Vector2(-1, 1)
 position = Vector2(175, 115)
 
 [node name="Tree18" parent="." instance=ExtResource("7_2vpoy")]
-position = Vector2(-85, 148)
+position = Vector2(-95, 152)
 scale = Vector2(-1, 1)
 
 [node name="Tree19" parent="." instance=ExtResource("7_2vpoy")]
@@ -215,10 +211,10 @@ position = Vector2(171, 2)
 position = Vector2(-166, 35)
 
 [node name="Spirit2" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(38, 173)
+position = Vector2(56, 179)
 
 [node name="Spirit3" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(-11, 167)
+position = Vector2(-22, 178)
 
 [node name="Spirit4" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(15, 151)
+position = Vector2(15, 193)
