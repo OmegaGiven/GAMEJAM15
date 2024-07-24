@@ -213,3 +213,12 @@ position = Vector2(171, 2)
 
 [node name="Tree30" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(-166, 35)
+
+[node name="Spirit2" parent="." instance=ExtResource("6_8s1x8")]
+position = Vector2(38, 173)
+
+[node name="Spirit3" parent="." instance=ExtResource("6_8s1x8")]
+position = Vector2(-11, 167)
+
+[node name="Spirit4" parent="." instance=ExtResource("6_8s1x8")]
+position = Vector2(15, 151)
