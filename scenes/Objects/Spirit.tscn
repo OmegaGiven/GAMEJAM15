@@ -4,9 +4,6 @@
 [ext_resource type="Script" path="res://scenes/Objects/Spirit.gd" id="1_psjra"]
 [ext_resource type="Texture2D" uid="uid://cuwbljaio7ot7" path="res://assets/Undead executioner puppet/png/summonDeath.png" id="3_k0557"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fnwrd"]
-radius = 9.0
-
 [sub_resource type="Animation" id="Animation_ed8xj"]
 length = 0.001
 tracks/0/type = "value"
@@ -74,13 +71,12 @@ _data = {
 "death": SubResource("Animation_yiwcp")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fnwrd"]
+radius = 9.0
+
 [node name="Spirit" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_psjra")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 4)
-shape = SubResource("CircleShape2D_fnwrd")
 
 [node name="idle anime" type="Sprite2D" parent="."]
 texture = ExtResource("1_irep3")
@@ -97,5 +93,11 @@ speed_scale = 0.5
 texture = ExtResource("3_k0557")
 hframes = 3
 vframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 4)
+shape = SubResource("CircleShape2D_fnwrd")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

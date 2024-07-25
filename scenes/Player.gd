@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var device_num = 0
 var player_name = 'player'
+var type = "player"
 var deadzone = 0.1
 const SPEED = 70.0
 var keyboard = false
