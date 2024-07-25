@@ -2,7 +2,7 @@ extends Node2D
 
 
 func _ready():
-	self.position = Vector2(Settings.resolution_x/2, Settings.resolution_y/2)
+	self.position = Vector2(floor(Settings.resolution_x)/2.0, floor(Settings.resolution_y)/2.0)
 	$VBoxContainer/Arcade.grab_focus()
 
 

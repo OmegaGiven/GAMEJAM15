@@ -44,12 +44,12 @@ func next_destination():
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# enemy movement
 	pass
 
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
 		seppuku()
 

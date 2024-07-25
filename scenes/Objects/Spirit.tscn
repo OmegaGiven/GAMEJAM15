@@ -76,6 +76,8 @@ radius = 9.0
 
 [node name="Spirit" type="CharacterBody2D"]
 texture_filter = 1
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_psjra")
 
 [node name="idle anime" type="Sprite2D" parent="."]
@@ -95,9 +97,18 @@ hframes = 3
 vframes = 2
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 4)
 shape = SubResource("CircleShape2D_fnwrd")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 512
+position = Vector2(-1, 4)
+shape = SubResource("CircleShape2D_fnwrd")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

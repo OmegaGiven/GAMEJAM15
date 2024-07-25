@@ -4,7 +4,7 @@ extends RigidBody2D
 @export var health = 100
 @export var type = "base"
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("debug"):
 		hp_bar.damage(1)
 

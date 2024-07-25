@@ -6,7 +6,7 @@ extends Node2D
 
 func _ready():
 	self.hide()
-	self.position = Vector2(Settings.resolution_x/2, Settings.resolution_y/2)
+	self.position = Vector2(floor(Settings.resolution_x)/2.0, floor(Settings.resolution_y)/2.0)
 	$VBoxContainer/Master2.value = Settings.master
 	$VBoxContainer/Music2.value = Settings.music
 	$VBoxContainer/SFX2.value =  Settings.sfx

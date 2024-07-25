@@ -3,7 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.position = Vector2(Settings.resolution_x/2, Settings.resolution_y/2)
+	self.position = Vector2(Settings.resolution_x/2.0, Settings.resolution_y/2.0)
 	$VBoxContainer/Difficulty.add_item("Easy")
 	$VBoxContainer/Difficulty.add_item("Normal")
 	$VBoxContainer/Difficulty.add_item("Hard")

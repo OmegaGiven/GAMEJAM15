@@ -61,11 +61,11 @@ func resize_ui():
 func match_ui_to_splitscreen():
 	var p
 	if len(MultiplayerControls.players) == 2:
-		p = Vector2(-Settings.resolution_x/4,0)
+		p = Vector2(-floor(Settings.resolution_x)/4.0,0)
 	elif len(MultiplayerControls.players) == 3:
-		p = Vector2(-Settings.resolution_x/3,0)
+		p = Vector2(-floor(Settings.resolution_x)/3.0,0)
 	elif len(MultiplayerControls.players) == 4:
-		p = Vector2(-Settings.resolution_x/4,-Settings.resolution_y/4)
+		p = Vector2(-floor(Settings.resolution_x)/4.0,-floor(Settings.resolution_y)/4.0)
 	else:
 		return Vector2(0,0)
 	return p

@@ -15,7 +15,7 @@ func _ready():
 	self.add_to_group("enemy")
 
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
 		seppuku()
 
