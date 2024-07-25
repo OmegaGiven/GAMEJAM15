@@ -585,9 +585,6 @@ libraries = {
 speed_scale = 0.25
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_nmjqp")
-}
 tree_root = SubResource("AnimationNodeStateMachine_kn2jp")
 anim_player = NodePath("../PlayerAnimation")
 parameters/conditions/attack = false
