@@ -7,6 +7,10 @@ const SPEED = 300.0
 
 var cooldown = 1 #in seconds
 var destination_list = []
+var spawn_point: Vector2
+var WANDER_RADIUS = 250
+var WANDER_SPEED = 20
+var random_point
 
 
 """
@@ -22,9 +26,11 @@ smaller guys wander toward closes light source
 """
 
 func _ready():
+	spawn_point = self.position
 	$reaper_attack.hide()
 	$reaper_death.hide()
 	self.add_to_group("enemy")
+	random_point = get_random_goto_point()
 
 func detect_tower():
 	pass
@@ -39,14 +45,19 @@ func go_toward_base():
 	pass
 
 
-func next_destination():
-	#NavigationAgent2D
-	pass
+func get_random_goto_point():
+	var rand_angle = randf_range(0, 2*PI)
+	var rand_radius = randf_range(0,WANDER_RADIUS)
+	return spawn_point + Vector2(cos(rand_angle), sin(rand_angle)) * rand_radius
 
 
 func _physics_process(_delta):
 	# enemy movement
-	pass
+	var direction = random_point - position
+	if direction.length() < 10:
+		random_point = get_random_goto_point()
+	velocity = direction.normalized() * WANDER_SPEED
+	move_and_slide()
 
 
 func _process(_delta):
@@ -56,6 +67,7 @@ func _process(_delta):
 
 func seppuku():
 	$reaper_idle.hide()
+	$reaper_attack.hide()
 	$reaper_death.show()
 	$AnimationPlayer.play("death")
 
@@ -63,6 +75,7 @@ func seppuku():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death":
 		self.queue_free()
+
 
 
 var objects_in_detection_area = []
