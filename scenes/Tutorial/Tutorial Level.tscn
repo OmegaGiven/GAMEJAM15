@@ -231,15 +231,6 @@ position = Vector2(171, 2)
 [node name="Tree30" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(-166, 35)
 
-[node name="Spirit2" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(56, 179)
-
-[node name="Spirit3" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(-22, 178)
-
-[node name="Spirit4" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(15, 193)
-
 [node name="tree13" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(-133, -135)
 rotation = -3.14159

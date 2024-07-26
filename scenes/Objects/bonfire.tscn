@@ -19,7 +19,7 @@ width = 750
 height = 750
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0.22)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="Animation" id="Animation_mqkiq"]
 length = 0.001
@@ -60,6 +60,8 @@ _data = {
 }
 
 [node name="Bonfire" type="RigidBody2D" node_paths=PackedStringArray("hp_bar")]
+collision_layer = 128
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_u5p7u")
 hp_bar = NodePath("HpBar")
@@ -89,6 +91,7 @@ libraries = {
 autoplay = "simple_fire"
 
 [node name="HpBar" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_lvqgm")]
+visible = false
 offset_left = -27.0
 offset_top = 8.0
 offset_right = -27.0

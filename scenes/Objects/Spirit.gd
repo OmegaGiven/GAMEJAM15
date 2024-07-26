@@ -31,7 +31,6 @@ func _on_animation_player_animation_finished(anim_name):
 		self.queue_free()
 
 
-
 func _on_area_2d_body_entered(body):
 	if enemy_type == "exploding" and (body.type == "player" or body.type == "base"):
 		body.health -= DAMAGE

@@ -77,8 +77,8 @@ func _on_animation_player_animation_finished(anim_name):
 		self.queue_free()
 
 
-
 var objects_in_detection_area = []
+
 
 func _on_area_2d_body_entered(body):
 	print("object entered: ",body)

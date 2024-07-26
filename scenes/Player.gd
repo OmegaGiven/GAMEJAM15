@@ -17,7 +17,7 @@ var resources: int = 100
 var owned_towers = []
 var disconnected = false
 var health = 10
-@export var damage = 1
+@export var damage = 10
 
 var BuildMenu = load(GamePaths.BuildMenu)
 var buildmenu = BuildMenu.instantiate()
@@ -186,3 +186,14 @@ func _on_attack_box_body_entered(body):
 	print(body)
 	if body in get_tree().get_nodes_in_group("enemy"):
 		body.health -= damage
+	if body.type == "base":
+		if resources > 0:
+			if resources > 10:
+				body.health += 10
+				resources -= 10
+			else:
+				body.health += resources
+				resources -= resources
+	if body.type == "resource":
+		body.health -= damage
+		resources += damage

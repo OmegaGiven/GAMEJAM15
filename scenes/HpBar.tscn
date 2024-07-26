@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/HpBar.gd" id="1_h1hd5"]
 [ext_resource type="Texture2D" uid="uid://8scuk30js78" path="res://assets/Free-Undead-Tileset-Top-Down-Pixel-Art/PNG/basic life bars a icons .png" id="2_3b8oy"]
-[ext_resource type="PackedScene" uid="uid://bvawltvubhpbh" path="res://scenes/hp_tick.tscn" id="3_b0bep"]
+[ext_resource type="PackedScene" path="res://scenes/hp_tick.tscn" id="3_b0bep"]
 
 [node name="HpBar" type="Control"]
 layout_mode = 3
