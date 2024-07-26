@@ -37,7 +37,6 @@ func detect_tower():
 
 
 func detect_player():
-	
 	pass
 
 

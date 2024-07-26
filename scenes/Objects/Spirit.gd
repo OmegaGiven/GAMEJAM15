@@ -1,18 +1,32 @@
 extends CharacterBody2D
 
 
-const SPEED = 80.0
-
+const SPEED = 30.0
 @export var health = 10
 @export var type = "enemy"
 @export var enemy_type = "exploding"
 var DAMAGE = 5
-
+var closest_node
 
 
 func _ready():
 	$"death animation".hide()
 	self.add_to_group("enemy")
+	get_closest_node()
+
+
+func get_closest_node():
+	var min_distance = INF
+	for node in get_tree().get_nodes_in_group("base"):
+		var distance = global_position.distance_to(node.global_position)
+		if distance < min_distance:
+			min_distance = distance
+			closest_node = node
+
+func _physics_process(_delta):
+	if closest_node:
+		velocity = global_position.direction_to(closest_node.global_position) * SPEED
+		move_and_slide()
 
 
 func _process(_delta):
