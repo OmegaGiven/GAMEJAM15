@@ -9,7 +9,7 @@
 radius = 21.095
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0863w"]
-radius = 174.011
+radius = 102.774
 
 [sub_resource type="Animation" id="Animation_tu7yo"]
 length = 0.001
@@ -110,6 +110,8 @@ _data = {
 
 [node name="Reaper" type="CharacterBody2D"]
 texture_filter = 1
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_pff51")
 
 [node name="character_collision" type="CollisionShape2D" parent="."]

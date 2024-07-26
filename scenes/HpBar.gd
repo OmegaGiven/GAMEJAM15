@@ -22,7 +22,7 @@ func _ready():
 	progress_bar.position.x = sprite.position.x
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func reciveHp(health_recived):

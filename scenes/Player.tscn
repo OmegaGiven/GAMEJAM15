@@ -1,9 +1,10 @@
-[gd_scene load_steps=48 format=3 uid="uid://7384ya4k0hmm"]
+[gd_scene load_steps=61 format=3 uid="uid://7384ya4k0hmm"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_i7fl6"]
 [ext_resource type="Texture2D" uid="uid://bwrbib1s6omw" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Idle/Unarmed_Idle_full.png" id="2_auy33"]
 [ext_resource type="Texture2D" uid="uid://bmxbcs64ng4me" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Run/Unarmed_Run_full.png" id="3_tfxiw"]
 [ext_resource type="Texture2D" uid="uid://dhx1n5jno1ust" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Sword_Run_Attack/Sword_Run_Attack_full.png" id="4_xr028"]
+[ext_resource type="Texture2D" uid="uid://s2qqp7n770l4" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Death/Unarmed_Death_full.png" id="5_pagbs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3n8i"]
 radius = 2.5
@@ -141,6 +142,18 @@ tracks/2/path = NodePath("running_attack_sword:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("death_sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -410,9 +423,77 @@ tracks/0/keys = {
 "values": [24, 25, 26, 27, 28, 29, 30, 31]
 }
 
+[sub_resource type="Animation" id="Animation_ui0n4"]
+resource_name = "death_front"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("death_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_2vjm1"]
+resource_name = "death_left"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("death_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_0idhc"]
+resource_name = "death_right"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("death_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19, 20]
+}
+
+[sub_resource type="Animation" id="Animation_kd10y"]
+resource_name = "death_back"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("death_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 24, 25, 26, 27]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nmjqp"]
 _data = {
 "RESET": SubResource("Animation_jvk2e"),
+"death_back": SubResource("Animation_kd10y"),
+"death_front": SubResource("Animation_ui0n4"),
+"death_left": SubResource("Animation_2vjm1"),
+"death_right": SubResource("Animation_0idhc"),
 "idle_down": SubResource("Animation_hr70b"),
 "idle_left": SubResource("Animation_51ncs"),
 "idle_right": SubResource("Animation_dur83"),
@@ -449,6 +530,28 @@ blend_point_2/pos = Vector2(-1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_ppu7i")
 blend_point_3/pos = Vector2(0, -1)
 blend_mode = 2
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ri48t"]
+animation = &"death_back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_afggv"]
+animation = &"death_front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_74o2c"]
+animation = &"death_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ecq62"]
+animation = &"death_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fnfvl"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ri48t")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_afggv")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_74o2c")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ecq62")
+blend_point_3/pos = Vector2(-1, 0)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a3ukl"]
 animation = &"idle_right"
@@ -525,22 +628,36 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_moving"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lqo0h"]
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aj68c"]
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vdakt"]
+advance_mode = 2
+advance_condition = &"dead"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kn2jp"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_bxq8m")
 states/Attack/position = Vector2(640, 60)
+states/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_fnfvl")
+states/BlendSpace2D/position = Vector2(640, 397)
 states/End/position = Vector2(1073, 184)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_0ah4w")
 states/Idle/position = Vector2(529, 184)
 states/Running/node = SubResource("AnimationNodeBlendSpace2D_an5yo")
 states/Running/position = Vector2(749, 184)
 states/Start/position = Vector2(325, 184)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v7dx1"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_p0jru"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_jbmai"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_rw6n0"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_le481"), "Running", "Attack", SubResource("AnimationNodeStateMachineTransition_85hx5"), "Attack", "Running", SubResource("AnimationNodeStateMachineTransition_jluu8")]
-graph_offset = Vector2(-142, -40)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_v7dx1"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_p0jru"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_jbmai"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_rw6n0"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_le481"), "Running", "Attack", SubResource("AnimationNodeStateMachineTransition_85hx5"), "Attack", "Running", SubResource("AnimationNodeStateMachineTransition_jluu8"), "Idle", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_lqo0h"), "Running", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_aj68c"), "Attack", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_vdakt")]
+graph_offset = Vector2(-67, -17)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 scale = Vector2(0.8, 0.8)
-collision_mask = 127
+collision_mask = 111
 script = ExtResource("1_i7fl6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -585,21 +702,31 @@ libraries = {
 speed_scale = 0.25
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_nmjqp")
-}
 tree_root = SubResource("AnimationNodeStateMachine_kn2jp")
 anim_player = NodePath("../PlayerAnimation")
 parameters/conditions/attack = false
+parameters/conditions/dead = false
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/Attack/blend_position = Vector2(0, 0.99262)
+parameters/BlendSpace2D/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(-0.00305063, 0.957672)
 parameters/Running/blend_position = Vector2(-0.19097, 0.365942)
 
 [node name="attack_box" type="Area2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+collision_mask = 156
 
 [node name="attack_box" type="CollisionPolygon2D" parent="attack_box"]
+light_mask = 0
+visibility_layer = 0
 polygon = PackedVector2Array(-17.5, 15, -11.25, 20, -5, 23.75, 5, 23.75, 11.25, 20, 17.5, 15, 0, 0)
 
+[node name="death_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("5_pagbs")
+hframes = 7
+vframes = 4
+
 [connection signal="body_entered" from="attack_box" to="." method="_on_attack_box_body_entered"]
+[connection signal="body_shape_entered" from="attack_box" to="." method="_on_attack_box_body_shape_entered"]

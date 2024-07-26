@@ -44,12 +44,12 @@ func size():
 	var x = Settings.resolution_x
 	var y = Settings.resolution_y
 	if len(MultiplayerControls.players) == 2:
-		x = x/2
+		x = floor(x/2.0)
 	elif len(MultiplayerControls.players) == 3:
-		x = x/3
+		x = floor(x/3.0)
 	elif len(MultiplayerControls.players) == 4:
-		x = x/2
-		y = y/2
+		x = floor(x/2.0)
+		y = floor(y/2.0)
 	elif len(MultiplayerControls.players) > 4:
 		return null
 	print("size of each split screen: {x}, {y}".format({"x":x, "y":y}))
