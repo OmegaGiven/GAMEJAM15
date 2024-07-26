@@ -432,3 +432,12 @@ position = Vector2(84, -452)
 
 [node name="Tree66" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(173, -601)
+
+[node name="Spirit2" parent="." instance=ExtResource("6_8s1x8")]
+position = Vector2(76, 610)
+
+[node name="Spirit3" parent="." instance=ExtResource("6_8s1x8")]
+position = Vector2(-43, 623)
+
+[node name="Spirit4" parent="." instance=ExtResource("6_8s1x8")]
+position = Vector2(59, 663)
