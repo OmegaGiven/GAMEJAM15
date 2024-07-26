@@ -1,10 +1,11 @@
-[gd_scene load_steps=61 format=3 uid="uid://7384ya4k0hmm"]
+[gd_scene load_steps=62 format=3 uid="uid://7384ya4k0hmm"]
 
 [ext_resource type="Script" path="res://scenes/Player.gd" id="1_i7fl6"]
 [ext_resource type="Texture2D" uid="uid://bwrbib1s6omw" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Idle/Unarmed_Idle_full.png" id="2_auy33"]
 [ext_resource type="Texture2D" uid="uid://bmxbcs64ng4me" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Run/Unarmed_Run_full.png" id="3_tfxiw"]
 [ext_resource type="Texture2D" uid="uid://dhx1n5jno1ust" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Sword_Run_Attack/Sword_Run_Attack_full.png" id="4_xr028"]
 [ext_resource type="Texture2D" uid="uid://s2qqp7n770l4" path="res://assets/Free-Base 4-Direction-Male-Character-Pixel-Art/PNG/Unarmed_Death/Unarmed_Death_full.png" id="5_pagbs"]
+[ext_resource type="AudioStream" uid="uid://b1810dfq028d1" path="res://assets/Steps_dirt-002.ogg" id="6_4vyyu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3n8i"]
 radius = 2.5
@@ -728,5 +729,12 @@ texture = ExtResource("5_pagbs")
 hframes = 7
 vframes = 4
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_4vyyu")
+volume_db = 1.0
+pitch_scale = 0.5
+bus = &"SFX"
+
 [connection signal="body_entered" from="attack_box" to="." method="_on_attack_box_body_entered"]
 [connection signal="body_shape_entered" from="attack_box" to="." method="_on_attack_box_body_shape_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
