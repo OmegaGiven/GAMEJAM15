@@ -7,3 +7,4 @@ func _ready():
 	$HBoxContainer/SubViewportContainer/PauseMenu.hide()
 
 	print("anchor preset: ", $HBoxContainer/SubViewportContainer/Dialogue/RichTextLabel.anchors_preset)
+	$HBoxContainer/SubViewportContainer.add_to_group("Main Viewport")

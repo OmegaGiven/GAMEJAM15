@@ -206,6 +206,8 @@ func _on_attack_box_body_entered(body):
 	if body.type == "resource":
 		body.health -= damage
 		resources += damage
+		$"wood hit sound".pitch_scale = randf_range(0.5,1.5)
+		$"wood hit sound".play()
 
 
 func _on_audio_stream_player_2d_finished():

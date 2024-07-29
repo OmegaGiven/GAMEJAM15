@@ -10,18 +10,12 @@ var health: float:
 		change_lighting()
 @export var type = "base"
 
+var BURN_COOLDOWN = 1 
 
 
 func _ready():
 	health = 10
 	pass
-
-
-func _process(_delta):
-	#if Input.is_action_just_pressed("debug"):
-		#hp_bar.damage(1)
-	pass
-
 
 
 func add_fuel(wood):
@@ -60,3 +54,8 @@ Luminocty =
 
 1-100
 """
+
+
+func _on_timer_timeout():
+	health -= 2
+	$Timer.start()

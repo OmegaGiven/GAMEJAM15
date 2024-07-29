@@ -3,7 +3,7 @@ extends Node2D
 
 func _ready():
 	self.position = Vector2(floor(Settings.resolution_x)/2.0, floor(Settings.resolution_y)/2.0)
-	$VBoxContainer/Arcade.grab_focus()
+	$VBoxContainer/Tutorial.grab_focus()
 
 
 func _on_exit_pressed():
@@ -17,7 +17,7 @@ func _on_arcade_pressed():
 
 func _on_visibility_changed():
 	if self.visible:
-		$VBoxContainer/Arcade.grab_focus()
+		$VBoxContainer/Tutorial.grab_focus()
 
 
 func _on_settings_pressed():

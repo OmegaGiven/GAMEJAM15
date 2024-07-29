@@ -7,5 +7,4 @@ var tutorial_text = {
 	"EnemyComing" : ["What is that sound?", "Those dont look friendly"],
 	"FirstEncounterFinished": ["Where did those come from?", "I should build some torches in case more come"],
 	
-	
 }

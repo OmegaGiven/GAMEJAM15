@@ -98,4 +98,8 @@ offset_right = -27.0
 offset_bottom = 8.0
 sprite = NodePath("../Sprite2D")
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="animation_finished" from="fire_sprite" to="." method="_on_fire_sprite_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

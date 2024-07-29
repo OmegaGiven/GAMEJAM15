@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb8ebr1sk20qg"]
+[gd_scene load_steps=9 format=3 uid="uid://cb8ebr1sk20qg"]
 
 [ext_resource type="Script" path="res://scenes/Tutorial/Tutorial Level.gd" id="1_ms747"]
 [ext_resource type="TileSet" uid="uid://bt5t54b5pbk7g" path="res://assets/main_tile_set.tres" id="2_gys0l"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://de0xewjqcxhl8" path="res://scenes/Objects/tree1.tscn" id="5_7o1q4"]
 [ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Objects/Reaper.tscn" id="5_bcxdk"]
 [ext_resource type="PackedScene" uid="uid://b3odxldeal1m0" path="res://scenes/Objects/tree2.tscn" id="6_7u6cr"]
-[ext_resource type="PackedScene" uid="uid://7y7n6gb4o3to" path="res://scenes/Objects/Spirit.tscn" id="6_8s1x8"]
 [ext_resource type="PackedScene" uid="uid://cd5dwhjw31sg1" path="res://scenes/Objects/tree3.tscn" id="7_2vpoy"]
 [ext_resource type="AudioStream" uid="uid://cncb2iohubbtk" path="res://assets/starry-night-coqui-frogs-ambiance-211990.mp3" id="9_a3vw0"]
 
@@ -39,9 +38,6 @@ position = Vector2(21, 130)
 
 [node name="Enemy1" parent="." instance=ExtResource("5_bcxdk")]
 position = Vector2(1, -418)
-
-[node name="Spirit" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(-77, -336)
 
 [node name="Tree57" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(59, -208)
@@ -89,13 +85,9 @@ position = Vector2(125, 93)
 
 [node name="Tree12" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(63, 413)
-rotation = 3.14159
-scale = Vector2(-1, -1)
 
 [node name="Tree13" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(71, 310)
-rotation = 3.14159
-scale = Vector2(-1, -1)
 
 [node name="Tree6" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(-41, 545)
@@ -117,7 +109,8 @@ position = Vector2(95, 265)
 
 [node name="tree4" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(-6, 282)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="tree5" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(207, 71)
@@ -126,18 +119,21 @@ scale = Vector2(1, -1)
 
 [node name="Tree7" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(59, 364)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree5" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-86, 493)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="tree1" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(-31, 499)
 
 [node name="Tree2" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(118, 450)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree3" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(48, 545)
@@ -150,7 +146,8 @@ position = Vector2(55, 462)
 
 [node name="Tree9" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(-21, 424)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree15" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(-77, 241)
@@ -162,22 +159,26 @@ position = Vector2(-119, 206)
 
 [node name="tree9" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(-152, 152)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree16" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(175, 115)
 
 [node name="Tree18" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-95, 152)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree19" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(137, 153)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree20" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(53, 243)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree21" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(-78, 61)
@@ -186,23 +187,28 @@ scale = Vector2(1, -1)
 
 [node name="Tree22" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-131, 100)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree23" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(147, 54)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree24" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-192, -4)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree25" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(54, 54)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree26" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-14, 33)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="tree10" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(121, 11)
@@ -211,20 +217,17 @@ scale = Vector2(1, -1)
 
 [node name="tree11" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(-213, 84)
-rotation = 3.14159
-scale = Vector2(-1, -1)
 
 [node name="tree12" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(-41, -14)
-rotation = 3.14159
-scale = Vector2(-1, -1)
 
 [node name="Tree27" parent="." instance=ExtResource("6_7u6cr")]
 position = Vector2(48, 4)
 
 [node name="Tree28" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-216, 135)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree29" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(171, 2)
@@ -271,8 +274,6 @@ scale = Vector2(1, -1)
 
 [node name="tree23" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(-41, -14)
-rotation = 3.14159
-scale = Vector2(-1, -1)
 
 [node name="tree24" parent="." instance=ExtResource("5_7o1q4")]
 position = Vector2(-97, -589)
@@ -369,43 +370,53 @@ position = Vector2(28, -413)
 
 [node name="Tree47" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-173, -283)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree48" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-91, -198)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree49" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-185, -472)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree50" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(148, -403)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree51" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-46, -391)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree52" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(151, -332)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree53" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(234, -471)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree54" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(76, -633)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree55" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-44, -616)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree56" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-259, -536)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 
 [node name="Tree58" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(-36, -85)
@@ -434,16 +445,9 @@ position = Vector2(84, -452)
 [node name="Tree66" parent="." instance=ExtResource("7_2vpoy")]
 position = Vector2(173, -601)
 
-[node name="Spirit2" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(76, 610)
-
-[node name="Spirit3" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(-43, 623)
-
-[node name="Spirit4" parent="." instance=ExtResource("6_8s1x8")]
-position = Vector2(59, 663)
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_a3vw0")
 volume_db = 6.0
 autoplay = true
+
+[node name="Node" type="Node" parent="."]
