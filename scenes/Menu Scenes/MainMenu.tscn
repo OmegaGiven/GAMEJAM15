@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bro8f0qhi13h"]
+[gd_scene load_steps=11 format=3 uid="uid://bro8f0qhi13h"]
 
 [ext_resource type="PackedScene" uid="uid://bubg5pix7uosu" path="res://scenes/Menu Scenes/Menu.tscn" id="1_pgeli"]
 [ext_resource type="PackedScene" uid="uid://rgl4sdd51x7l" path="res://scenes/Menu Scenes/ArcadeMenu.tscn" id="2_dflvw"]
 [ext_resource type="PackedScene" uid="uid://tshpyxt3yo3u" path="res://scenes/Menu Scenes/SettingsMenu.tscn" id="3_oe8ew"]
 [ext_resource type="AudioStream" uid="uid://nj43jlh0axg5" path="res://assets/OmegaGivenAssets/Fire.mp3" id="4_jlx33"]
+[ext_resource type="AudioStream" uid="uid://bfquj0mu31qgm" path="res://assets/OmegaGivenAssets/spooky1.wav" id="5_torlo"]
 
 [sub_resource type="Curve" id="Curve_jifls"]
 _data = [Vector2(0.318868, 0.18071), 0.0, 0.0, 0, 0, Vector2(0.737736, 0.642409), 0.0, 0.0, 0, 0]
@@ -61,3 +62,8 @@ stream = ExtResource("4_jlx33")
 volume_db = 6.0
 autoplay = true
 bus = &"SFX"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_torlo")
+volume_db = 9.54
+autoplay = true

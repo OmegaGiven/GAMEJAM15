@@ -21,6 +21,8 @@ GamePaths="*res://global scripts/GamePaths.gd"
 MultiplayerControls="*res://global scripts/MultiplayerControls.gd"
 Settings="*res://global scripts/Settings.gd"
 SplitScreenFunctionality="*res://global scripts/SplitScreenFunctionality.gd"
+DialogueCreator="*res://global scripts/DialogueCreator.gd"
+TutorialDialogue="*res://dialogue/TutorialDialogue.gd"
 
 [display]
 

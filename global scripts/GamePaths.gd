@@ -7,6 +7,7 @@ extends Node
 @export var main_menu 		= "res://scenes/Menu Scenes/MainMenu.tscn"
 @export var spawnable_location = "res://scenes/Objects/SpawnableLocation.tscn"
 
+@export var tutorial_dialogue = "res://dialogue/tutorial_dialogue.gd"
 
 #OBJECTS
 @export var Player 			= "res://scenes/Player.tscn"

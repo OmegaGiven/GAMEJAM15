@@ -17,6 +17,7 @@ var resources: int = 100
 var owned_towers = []
 var disconnected = false
 var health = 10
+var in_step = false
 @export var damage = 10
 
 var BuildMenu = load(GamePaths.BuildMenu)
@@ -26,6 +27,7 @@ var buildmenu = BuildMenu.instantiate()
 
 func _ready():
 	animation_tree.active = true
+	$attack_box.monitoring = false
 	$running_attack_sword.hide()
 	$attack_box.hide()
 	$death_sprite.hide()
@@ -74,6 +76,7 @@ func animation_manager():
 				if !animation_tree["parameters/conditions/attack"]:
 					is_idle()
 			else:
+				play_footsteps()
 				animation_tree["parameters/conditions/idle"] = false
 				animation_tree["parameters/conditions/is_moving"] = true
 				if !animation_tree["parameters/conditions/attack"]:
@@ -89,6 +92,12 @@ func animation_manager():
 				await get_tree().create_timer(0.4).timeout
 				$attack_box.monitoring = false
 
+func play_footsteps():
+	if !in_step:
+		in_step = true
+		$AudioStreamPlayer2D.pitch_scale = randf_range(0.5,1.5)
+		$AudioStreamPlayer2D.play()
+	
 
 func calculate_vector_degree():
 	var angle = ((velocity / SPEED).angle()) - (PI / 2) #aka 90 degrees
@@ -197,3 +206,10 @@ func _on_attack_box_body_entered(body):
 	if body.type == "resource":
 		body.health -= damage
 		resources += damage
+		$"wood hit sound".pitch_scale = randf_range(0.5,1.5)
+		$"wood hit sound".play()
+
+
+func _on_audio_stream_player_2d_finished():
+	await get_tree().create_timer(0.15).timeout
+	in_step = false
