@@ -1,21 +1,18 @@
 extends StaticBody2D
 
-
+var _health: float = 0.0
 var health: float:
 	get:
-		return health
+		return _health
 	set(x):
-		health = x
+		_health = x
 		hit_animation()
-		print(health)
-		
 
 @export var type = "resource"
 
 func _ready():
 	health = 100
-	
+
 func hit_animation():
-#play hit animation
-	if health <= 0:
+	if _health <= 0:
 		queue_free()

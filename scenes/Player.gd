@@ -29,6 +29,7 @@ func _ready():
 	$running_attack_sword.hide()
 	$attack_box.hide()
 	$death_sprite.hide()
+	add_to_group("player")
 
 func movement():
 	# produces velocity by returning Vector2D

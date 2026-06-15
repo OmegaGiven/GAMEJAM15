@@ -1,62 +1,44 @@
 extends RigidBody2D
 
 @export var hp_bar : Control
-var health: float:
-	get:
-		return health
-	set(x):
-		health = x
-		print(health)
-		change_lighting()
 @export var type = "base"
 
+const MAX_HEALTH = 200.0
+const DECAY_RATE = 0.5  # health lost per second — player must keep gathering wood to survive
 
+var _health: float = 0.0
+var health: float:
+	get:
+		return _health
+	set(x):
+		_health = clamp(x, 0.0, MAX_HEALTH)
+		change_lighting()
+		if _health <= 0:
+			fire_out()
+
+var already_dead = false
+
+signal fire_extinguished
 
 func _ready():
-	health = 10
-	pass
+	add_to_group("base")
+	health = 100.0
 
-
-func _process(_delta):
-	#if Input.is_action_just_pressed("debug"):
-		#hp_bar.damage(1)
-	pass
-
-
+func _process(delta):
+	if already_dead:
+		return
+	health -= DECAY_RATE * delta
 
 func add_fuel(wood):
-	health += wood
-	emit_signal("health_changed",  health)
+	health += wood * 5.0
 
+func fire_out():
+	if already_dead:
+		return
+	already_dead = true
+	emit_signal("fire_extinguished")
 
 func change_lighting():
-	var min = 0.55
-	var max = 0.8
-	var range = max - min
-	var lumin = health / (range * 10000)
-	print("lumin", lumin)
-	$PointLight2D.texture.fill_to.y = lumin + min
-	#if health >= 100:
-		#$PointLight2D.texture.fill_to.y = 0.8
-	#elif health <= 10:
-		#$PointLight2D.texture.fill_to.y = 0.55
-	#else:
-		#$PointLight2D.texture.fill_to.y = 0.0035 * health + 0.2
-
-
-
-"""
-health = 100
-Max luminocity To = 0.1
-+- 0.05
-MIN luminicty To = 0.45
-if health >= 100 then light == 0.1
-0.0016 = 1hp
-100 / 0.1 = 
-
-TO = 0.0035 * health + 0.1
-
-Luminocty = 
-
-1-100
-"""
+	# maps health 0-MAX to fill_to.y 0.55-0.80
+	var fill_y = 0.55 + (_health / MAX_HEALTH) * 0.25
+	$PointLight2D.texture.fill_to.y = fill_y
