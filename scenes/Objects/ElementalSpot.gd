@@ -1,57 +1,49 @@
 extends StaticBody2D
 
-@export var element_type: String = "water"  # "water" or "earth"
-@export var energy_per_tick: float = 5.0
-@export var harvest_interval: float = 5.0
+const ElementalBall = preload("res://scenes/Objects/ElementalBall.tscn")
+
+@export var element_type: String = "water"
+@export var spawn_interval: float = 8.0
+@export var max_balls: int = 3
 
 var nearby_totems: Array = []
-var harvest_timer: float = 0.0
+var active_balls: Array = []
+var spawn_timer: float = 0.0
 
 func _ready():
 	add_to_group("elemental_spot")
 	add_to_group(element_type + "_spot")
+	# Stagger first spawn so all spots don't fire at once
+	spawn_timer = randf_range(0.0, spawn_interval)
 
 func _process(delta):
-	harvest_timer += delta
-	if harvest_timer >= harvest_interval:
-		harvest_timer = 0.0
-		_harvest_tick()
+	spawn_timer += delta
+	if spawn_timer >= spawn_interval:
+		spawn_timer = 0.0
+		_try_spawn_ball()
 
-func _harvest_tick():
-	var connected_players: Dictionary = {}
+func _try_spawn_ball():
+	# Clean up freed balls
+	active_balls = active_balls.filter(func(b): return is_instance_valid(b))
+	if active_balls.size() >= max_balls:
+		return
+	# Only spawn if at least one placed totem is in range with a bonfire path
+	var has_viable_totem = false
 	for totem in nearby_totems:
-		if not is_instance_valid(totem):
-			continue
-		var owner = totem.owner_player
-		if owner == null or owner in connected_players:
-			continue
-		if _has_path_to_bonfire(totem, owner):
-			connected_players[owner] = true
-
-	if connected_players.is_empty():
+		if is_instance_valid(totem) and not totem.in_placement and totem.owner_player != null:
+			has_viable_totem = true
+			break
+	if not has_viable_totem:
 		return
 
-	var share = energy_per_tick / float(connected_players.size())
-	for player in connected_players:
-		if is_instance_valid(player):
-			player.add_elemental_energy(element_type, share)
-
-# BFS through same-owner totems from start_totem looking for a bonfire
-func _has_path_to_bonfire(start_totem: Node, owner: Node) -> bool:
-	var visited: Dictionary = {}
-	var queue: Array = [start_totem]
-	while not queue.is_empty():
-		var current = queue.pop_front()
-		if current in visited:
-			continue
-		visited[current] = true
-		for base in current.nearby_bases:
-			if is_instance_valid(base):
-				return true
-		for neighbor in current.nearby_totems:
-			if is_instance_valid(neighbor) and neighbor.owner_player == owner and neighbor not in visited:
-				queue.append(neighbor)
-	return false
+	var ball = ElementalBall.instantiate()
+	ball.global_position = global_position
+	var level = get_tree().get_first_node_in_group("LEVELS")
+	if level == null:
+		return
+	level.add_child(ball)
+	ball.init(self, element_type)
+	active_balls.append(ball)
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("totem") and body not in nearby_totems:

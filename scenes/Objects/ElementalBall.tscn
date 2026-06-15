@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://elemball001"]
+
+[ext_resource type="Script" path="res://scenes/Objects/ElementalBall.gd" id="1_eb"]
+
+[node name="ElementalBall" type="Node2D"]
+script = ExtResource("1_eb")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(8, 0, 5.657, 5.657, 0, 8, -5.657, 5.657, -8, 0, -5.657, -5.657, 0, -8, 5.657, -5.657)
