@@ -1,9 +1,16 @@
 extends CharacterBody2D
 
+const PLAYER_COLORS = [
+	Color(0.3, 0.55, 1.0),    # P1 blue
+	Color(1.0, 0.28, 0.28),   # P2 red
+	Color(0.25, 1.0, 0.4),    # P3 green
+	Color(1.0, 0.85, 0.1),    # P4 yellow
+]
 
 @export var device_num = 0
 var player_name = 'player'
 var type = "player"
+var player_color: Color = Color.WHITE
 var deadzone = 0.1
 const _BASE_SPEED = 70.0
 var keyboard = false
@@ -27,6 +34,47 @@ const REAPER_POWER_DURATION = 30.0
 var water_energy: float = 0.0
 var earth_energy: float = 0.0
 
+const CRAFT_TIME = 5.0
+var crafting: Dictionary = {}   # {build_type: time_remaining}
+var inventory: Dictionary = {}  # {build_type: count}
+
+func start_craft(build_type: String, wood: int, water: float = 0.0, earth: float = 0.0) -> bool:
+	if build_type in crafting:
+		print("Player %d: already crafting %s (%.0fs left)" % [device_num, build_type, crafting[build_type]])
+		return false
+	if resources < wood:
+		print("Player %d: need %d wood, have %d" % [device_num, wood, resources])
+		return false
+	if water > 0.0 and water_energy < water:
+		print("Player %d: need %.0f water, have %.0f" % [device_num, water, water_energy])
+		return false
+	if earth > 0.0 and earth_energy < earth:
+		print("Player %d: need %.0f earth, have %.0f" % [device_num, earth, earth_energy])
+		return false
+	resources -= wood
+	water_energy -= water
+	earth_energy -= earth
+	crafting[build_type] = CRAFT_TIME
+	print("Player %d: crafting %s (%.0fs)..." % [device_num, build_type, CRAFT_TIME])
+	return true
+
+func consume_inventory(build_type: String) -> bool:
+	if inventory.get(build_type, 0) <= 0:
+		return false
+	inventory[build_type] -= 1
+	return true
+
+func _tick_crafting(delta: float):
+	var completed: Array = []
+	for build_type in crafting:
+		crafting[build_type] -= delta
+		if crafting[build_type] <= 0.0:
+			completed.append(build_type)
+	for build_type in completed:
+		crafting.erase(build_type)
+		inventory[build_type] = inventory.get(build_type, 0) + 1
+		print("Player %d: %s ready to place!" % [device_num, build_type])
+
 func add_elemental_energy(element: String, amount: float):
 	match element:
 		"water":
@@ -43,6 +91,7 @@ var buildmenu = BuildMenu.instantiate()
 
 func _ready():
 	resources = Settings.starting_resources
+	player_color = PLAYER_COLORS[device_num % PLAYER_COLORS.size()]
 	animation_tree.active = true
 	$running_attack_sword.hide()
 	$attack_box.hide()
@@ -210,6 +259,7 @@ func _process(delta):
 		reaper_power_timer -= delta
 		if reaper_power_timer <= 0:
 			deactivate_reaper_power()
+	_tick_crafting(delta)
 	animation_manager()
 	zoom_process()
 	if free_cam or in_placement_mode:

@@ -13,6 +13,9 @@ func _ready():
 func get_build_type() -> String:
 	return "fire"
 
+func get_element_color() -> Color:
+	return Color(1.0, 0.45, 0.05)
+
 func _process(delta):
 	super._process(delta)
 	if in_placement:

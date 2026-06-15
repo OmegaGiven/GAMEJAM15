@@ -8,3 +8,6 @@ func _ready():
 
 func get_build_type() -> String:
 	return "earth"
+
+func get_element_color() -> Color:
+	return Color(0.3, 0.9, 0.2)

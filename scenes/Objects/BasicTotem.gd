@@ -19,6 +19,7 @@ func _ready():
 	add_to_group("totem")
 	if owner_player != null:
 		position = SplitScreenFunctionality.player_characters[owner_player.device_num]["camera"].position
+		$Sprite2D.modulate = owner_player.player_color
 
 func _input(event):
 	if not in_placement or owner_player == null:
@@ -30,32 +31,39 @@ func _input(event):
 			actually_placing = true
 
 func _try_place():
-	if owner_player.resources < wood_cost:
-		print("Need %d wood (have %d)" % [wood_cost, owner_player.resources])
-		return
-	if water_cost > 0 and owner_player.water_energy < water_cost:
-		print("Need %.0f water energy (have %.0f)" % [water_cost, owner_player.water_energy])
-		return
-	if earth_cost > 0 and owner_player.earth_energy < earth_cost:
-		print("Need %.0f earth energy (have %.0f)" % [earth_cost, owner_player.earth_energy])
-		return
 	_place()
 
 func _place():
 	in_placement = false
-	owner_player.resources -= wood_cost
-	owner_player.water_energy -= water_cost
-	owner_player.earth_energy -= earth_cost
 	owner_player.owned_towers.append(self)
 	self.set_collision_layer_value(7, true)
-	print("%s placed. Wood: %d | Water: %.0f | Earth: %.0f" % [
-		name, owner_player.resources, owner_player.water_energy, owner_player.earth_energy
+	$Sprite2D.modulate = owner_player.player_color
+	_spawn_element_ball()
+	print("%s placed by P%d. Wood: %d | Water: %.0f | Earth: %.0f" % [
+		name, owner_player.device_num, owner_player.resources, owner_player.water_energy, owner_player.earth_energy
 	])
 	if owner_build_menu:
 		owner_build_menu.on_totem_placed(get_build_type())
 
+func _spawn_element_ball():
+	var elem_color = get_element_color()
+	if elem_color == Color.TRANSPARENT:
+		return
+	var ball = Polygon2D.new()
+	ball.color = elem_color
+	ball.polygon = PackedVector2Array([
+		Vector2(7, 0), Vector2(4.95, 4.95), Vector2(0, 7),
+		Vector2(-4.95, 4.95), Vector2(-7, 0), Vector2(-4.95, -4.95),
+		Vector2(0, -7), Vector2(4.95, -4.95)
+	])
+	ball.position = Vector2(0, -85)
+	add_child(ball)
+
 func get_build_type() -> String:
 	return "basic"
+
+func get_element_color() -> Color:
+	return Color.TRANSPARENT
 
 func _process(_delta):
 	if owner_player != null and in_placement:

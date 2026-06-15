@@ -14,6 +14,9 @@ func _ready():
 func get_build_type() -> String:
 	return "water"
 
+func get_element_color() -> Color:
+	return Color.CYAN
+
 func _process(delta):
 	super._process(delta)
 	if in_placement:

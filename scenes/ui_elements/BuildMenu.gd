@@ -85,13 +85,19 @@ func create_new_basic_totem():
 # --- Button signals ---
 
 func _on_left_basic_pressed():
-	_enter_placement("basic")
+	_request_totem("basic", 10, 0.0, 0.0)
 
 func _on_left_fire_pressed():
-	_enter_placement("fire")
+	_request_totem("fire", 15, 0.0, 0.0)
 
 func _on_top_water_pressed():
-	_enter_placement("water")
+	_request_totem("water", 20, 10.0, 0.0)
 
 func _on_top_earth_pressed():
-	_enter_placement("earth")
+	_request_totem("earth", 20, 0.0, 10.0)
+
+func _request_totem(build_type: String, wood: int, water: float, earth: float):
+	if player.consume_inventory(build_type):
+		_enter_placement(build_type)
+	else:
+		player.start_craft(build_type, wood, water, earth)
