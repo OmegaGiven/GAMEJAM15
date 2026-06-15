@@ -1,16 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://iofifbdvmwp7"]
+[gd_scene load_steps=6 format=3 uid="uid://iofifbdvmwp7"]
 
 [ext_resource type="PackedScene" uid="uid://dlu2scs1lvef7" path="res://scenes/Objects/Tower.tscn" id="2_howpl"]
 [ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Objects/Reaper.tscn" id="3_ya4pk"]
 [ext_resource type="PackedScene" uid="uid://edfeoj3jr33i" path="res://scenes/Objects/gold.tscn" id="4_5t734"]
+[ext_resource type="PackedScene" uid="uid://qfjk7m3llnyp" path="res://scenes/Objects/bonfire.tscn" id="5_bonfi"]
+[ext_resource type="PackedScene" uid="uid://de0xewjqcxhl8" path="res://scenes/Objects/tree1.tscn" id="6_tree1"]
 
 [node name="Level" type="Node2D"]
 
+[node name="Bonfire" parent="." instance=ExtResource("5_bonfi")]
+position = Vector2(500, 400)
+
 [node name="Tower" parent="." instance=ExtResource("2_howpl")]
-position = Vector2(850, 515)
+position = Vector2(600, 400)
 
 [node name="Enemy1" parent="." instance=ExtResource("3_ya4pk")]
-position = Vector2(851, 200)
+position = Vector2(500, -200)
 
 [node name="Gold" parent="." instance=ExtResource("4_5t734")]
 position = Vector2(214, 391)
+
+[node name="Tree1" parent="." instance=ExtResource("6_tree1")]
+position = Vector2(300, 250)
+
+[node name="Tree2" parent="." instance=ExtResource("6_tree1")]
+position = Vector2(300, 550)
+
+[node name="Tree3" parent="." instance=ExtResource("6_tree1")]
+position = Vector2(700, 250)
+
+[node name="Tree4" parent="." instance=ExtResource("6_tree1")]
+position = Vector2(700, 550)
+
+[node name="Tree5" parent="." instance=ExtResource("6_tree1")]
+position = Vector2(150, 400)
+
+[node name="Tree6" parent="." instance=ExtResource("6_tree1")]
+position = Vector2(500, 200)
+
+[node name="Tree7" parent="." instance=ExtResource("6_tree1")]
+position = Vector2(500, 600)
+
+[node name="SpawnNorth" type="Node2D" parent="." groups=["spawn_point"]]
+position = Vector2(500, -300)
+
+[node name="SpawnSouth" type="Node2D" parent="." groups=["spawn_point"]]
+position = Vector2(500, 1100)
+
+[node name="SpawnWest" type="Node2D" parent="." groups=["spawn_point"]]
+position = Vector2(-300, 400)
+
+[node name="SpawnEast" type="Node2D" parent="." groups=["spawn_point"]]
+position = Vector2(1300, 400)

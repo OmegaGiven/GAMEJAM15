@@ -70,7 +70,7 @@ hp_bar = NodePath("HpBar")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_c5nnu")
 
-[node name="PointLight2D" type="PointLight2D" parent="." groups=["base"]]
+[node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.552941, 0.32549, 1)
 energy = 1.15
 texture = SubResource("GradientTexture2D_t0yjx")

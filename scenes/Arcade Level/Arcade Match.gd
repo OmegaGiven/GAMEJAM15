@@ -46,15 +46,19 @@ func spawn_wave():
 	var count = min(wave_number * 2 + 1, 10)
 	var spawn_points = get_tree().get_nodes_in_group("spawn_point")
 
+	var level = get_tree().get_first_node_in_group("LEVELS")
 	for i in count:
 		var spirit = Spirit.instantiate()
 		if spawn_points.size() > 0:
 			var sp = spawn_points[randi() % spawn_points.size()]
-			spirit.global_position = sp.global_position
+			spirit.position = sp.global_position
 		else:
 			var angle = randf_range(0, 2 * PI)
-			spirit.global_position = Vector2(cos(angle), sin(angle)) * 600
-		add_child(spirit)
+			spirit.position = Vector2(500, 400) + Vector2(cos(angle), sin(angle)) * 600
+		if level:
+			level.add_child(spirit)
+		else:
+			add_child(spirit)
 
 	print("Wave %d — %d spirits" % [wave_number, count])
 
