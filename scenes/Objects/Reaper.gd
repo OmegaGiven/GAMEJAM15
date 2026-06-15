@@ -19,7 +19,7 @@ var dying = false
 
 var Spirit = preload("res://scenes/Objects/Spirit.tscn")
 
-signal reaper_defeated
+signal reaper_defeated(death_position: Vector2)
 
 func _ready():
 	spawn_point = self.position
@@ -101,7 +101,7 @@ func seppuku():
 	$reaper_attack.hide()
 	$reaper_death.show()
 	$AnimationPlayer.play("death")
-	emit_signal("reaper_defeated")
+	emit_signal("reaper_defeated", global_position)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death":

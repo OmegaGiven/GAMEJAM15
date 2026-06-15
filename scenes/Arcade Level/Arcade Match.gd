@@ -62,7 +62,7 @@ func spawn_wave():
 
 	print("Wave %d — %d spirits" % [wave_number, count])
 
-func _on_reaper_defeated():
+func _on_reaper_defeated(_pos: Vector2):
 	if game_over:
 		return
 	game_over = true

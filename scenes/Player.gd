@@ -5,7 +5,7 @@ extends CharacterBody2D
 var player_name = 'player'
 var type = "player"
 var deadzone = 0.1
-const SPEED = 70.0
+const _BASE_SPEED = 70.0
 var keyboard = false
 var free_cam = false
 var MAX_ZOOM = Vector2(8,8)
@@ -18,6 +18,11 @@ var owned_towers = []
 var disconnected = false
 var health = 10
 @export var damage = 10
+var SPEED = 70.0
+
+var reaper_power_active = false
+var reaper_power_timer = 0.0
+const REAPER_POWER_DURATION = 30.0
 
 var BuildMenu = load(GamePaths.BuildMenu)
 var buildmenu = BuildMenu.instantiate()
@@ -175,7 +180,24 @@ func zoom_process():
 				SplitScreenFunctionality.player_characters[device_num]["camera"].zoom = zoom_check
 
 
-func _process(_delta):
+func activate_reaper_power():
+	reaper_power_active = true
+	reaper_power_timer = REAPER_POWER_DURATION
+	damage = 30
+	SPEED = _BASE_SPEED * 2.0
+	print("Player %d: REAPER POWER ACTIVATED (%.0fs)" % [device_num, REAPER_POWER_DURATION])
+
+func deactivate_reaper_power():
+	reaper_power_active = false
+	damage = 10
+	SPEED = _BASE_SPEED
+	print("Player %d: Reaper Power ended" % device_num)
+
+func _process(delta):
+	if reaper_power_active:
+		reaper_power_timer -= delta
+		if reaper_power_timer <= 0:
+			deactivate_reaper_power()
 	animation_manager()
 	zoom_process()
 	if free_cam or in_placement_mode:
