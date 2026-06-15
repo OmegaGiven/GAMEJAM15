@@ -222,6 +222,8 @@ func _on_attack_box_body_entered(body):
 	print(body)
 	if body in get_tree().get_nodes_in_group("enemy"):
 		body.health -= damage
+	if body.type == "player" and body != self:
+		body.health -= damage
 	if body.type == "base":
 		if resources > 0:
 			if resources > 10:
