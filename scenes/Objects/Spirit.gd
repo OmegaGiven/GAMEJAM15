@@ -17,7 +17,12 @@ func _ready():
 
 func get_closest_node():
 	var min_distance = INF
-	for node in get_tree().get_nodes_in_group("base"):
+	# Earth totems taunt — target them before going for the base
+	var taunts = get_tree().get_nodes_in_group("taunt")
+	var search_group = taunts if taunts.size() > 0 else get_tree().get_nodes_in_group("base")
+	for node in search_group:
+		if not is_instance_valid(node):
+			continue
 		var distance = global_position.distance_to(node.global_position)
 		if distance < min_distance:
 			min_distance = distance

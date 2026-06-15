@@ -1,9 +1,11 @@
 extends Node2D
 
-var Bonfire = preload("res://scenes/Objects/bonfire.tscn")
-var Tree    = preload("res://scenes/Objects/tree1.tscn")
-var Spirit  = preload("res://scenes/Objects/Spirit.tscn")
-var Reaper  = preload("res://scenes/Objects/Reaper.tscn")
+var Bonfire     = preload("res://scenes/Objects/bonfire.tscn")
+var Tree        = preload("res://scenes/Objects/tree1.tscn")
+var Spirit      = preload("res://scenes/Objects/Spirit.tscn")
+var Reaper      = preload("res://scenes/Objects/Reaper.tscn")
+var WaterSpot   = preload("res://scenes/Objects/WaterSpot.tscn")
+var EarthSpot   = preload("res://scenes/Objects/EarthSpot.tscn")
 
 # Clover petal positions (center of each player's base, relative to map origin)
 const PETAL_POSITIONS = {
@@ -51,6 +53,16 @@ func _setup_level():
 			var angle = (2.0 * PI / 5.0) * t
 			tree.position = petal + Vector2(cos(angle), sin(angle)) * 130
 			level.add_child(tree)
+
+	# Elemental spots between petals (midpoints on inner ring)
+	var spot_radius = 300.0
+	for i in petal_positions.size():
+		var a = petal_positions[i]
+		var b = petal_positions[(i + 1) % petal_positions.size()]
+		var mid = (a + b).normalized() * spot_radius
+		var spot = (WaterSpot if i % 2 == 0 else EarthSpot).instantiate()
+		spot.position = mid
+		level.add_child(spot)
 
 	# Reaper roams the center
 	var reaper = Reaper.instantiate()

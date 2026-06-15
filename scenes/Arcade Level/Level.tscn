@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://iofifbdvmwp7"]
+[gd_scene load_steps=8 format=3 uid="uid://iofifbdvmwp7"]
 
 [ext_resource type="PackedScene" uid="uid://dlu2scs1lvef7" path="res://scenes/Objects/Tower.tscn" id="2_howpl"]
 [ext_resource type="PackedScene" uid="uid://c1pvv6jhsisp7" path="res://scenes/Objects/Reaper.tscn" id="3_ya4pk"]
 [ext_resource type="PackedScene" uid="uid://edfeoj3jr33i" path="res://scenes/Objects/gold.tscn" id="4_5t734"]
 [ext_resource type="PackedScene" uid="uid://qfjk7m3llnyp" path="res://scenes/Objects/bonfire.tscn" id="5_bonfi"]
 [ext_resource type="PackedScene" uid="uid://de0xewjqcxhl8" path="res://scenes/Objects/tree1.tscn" id="6_tree1"]
+[ext_resource type="PackedScene" path="res://scenes/Objects/WaterSpot.tscn" id="7_water"]
+[ext_resource type="PackedScene" path="res://scenes/Objects/EarthSpot.tscn" id="8_earth"]
 
 [node name="Level" type="Node2D"]
 
@@ -40,6 +42,12 @@ position = Vector2(500, 200)
 
 [node name="Tree7" parent="." instance=ExtResource("6_tree1")]
 position = Vector2(500, 600)
+
+[node name="WaterSpot" parent="." instance=ExtResource("7_water")]
+position = Vector2(200, 200)
+
+[node name="EarthSpot" parent="." instance=ExtResource("8_earth")]
+position = Vector2(800, 200)
 
 [node name="SpawnNorth" type="Node2D" parent="." groups=["spawn_point"]]
 position = Vector2(500, -300)

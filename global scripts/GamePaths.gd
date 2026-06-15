@@ -13,6 +13,15 @@ extends Node
 @export var Player 			= "res://scenes/Player.tscn"
 @export var Tower			= "res://scenes/Objects/Tower.tscn"
 
+#TOTEMS
+@export var basic_totem		= "res://scenes/Objects/BasicTotem.tscn"
+@export var fire_totem		= "res://scenes/Objects/FireTotem.tscn"
+@export var water_totem		= "res://scenes/Objects/WaterTotem.tscn"
+@export var earth_totem		= "res://scenes/Objects/EarthTotem.tscn"
+
+#ELEMENTAL SPOTS
+@export var water_spot		= "res://scenes/Objects/WaterSpot.tscn"
+@export var earth_spot		= "res://scenes/Objects/EarthSpot.tscn"
 
 #UI
 @export var BuildMenu 		= "res://scenes/ui_elements/BuildMenu.tscn"

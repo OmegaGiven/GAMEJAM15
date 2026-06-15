@@ -24,6 +24,18 @@ var reaper_power_active = false
 var reaper_power_timer = 0.0
 const REAPER_POWER_DURATION = 30.0
 
+var water_energy: float = 0.0
+var earth_energy: float = 0.0
+
+func add_elemental_energy(element: String, amount: float):
+	match element:
+		"water":
+			water_energy += amount
+			print("Player %d water energy: %.1f" % [device_num, water_energy])
+		"earth":
+			earth_energy += amount
+			print("Player %d earth energy: %.1f" % [device_num, earth_energy])
+
 var BuildMenu = load(GamePaths.BuildMenu)
 var buildmenu = BuildMenu.instantiate()
 

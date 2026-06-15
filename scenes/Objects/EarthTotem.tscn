@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://earthtotem01"]
+
+[ext_resource type="Script" path="res://scenes/Objects/EarthTotem.gd" id="1_et"]
+[ext_resource type="Texture2D" uid="uid://dj4ftj2jt1lu1" path="res://assets/Tiny Swords/Tiny Swords (Update 010)/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="2_twtx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_et1"]
+radius = 22.0
+height = 88.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_et2"]
+radius = 150.0
+
+[node name="EarthTotem" type="RigidBody2D" groups=["totem", "taunt"]]
+collision_layer = 64
+collision_mask = 125
+gravity_scale = 0.0
+script = ExtResource("1_et")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 75)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_et1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_twtx")
+modulate = Color(0.4, 0.8, 0.2, 1.0)
+
+[node name="ConnectionArea" type="Area2D" parent="."]
+collision_mask = 480
+
+[node name="ConnectionShape" type="CollisionShape2D" parent="ConnectionArea"]
+shape = SubResource("CircleShape2D_et2")
+
+[connection signal="body_entered" from="ConnectionArea" to="." method="_on_connection_area_body_entered"]
+[connection signal="body_exited" from="ConnectionArea" to="." method="_on_connection_area_body_exited"]
