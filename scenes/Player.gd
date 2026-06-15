@@ -13,7 +13,7 @@ var MIN_ZOOM = Vector2(3, 3)
 const ZOOM_SPEED = 0.1
 var in_build_menu = false
 var in_placement_mode = false #this will allow you to be in a free cam mode to place the tower centered on camera
-var resources: int = 100
+var resources: int
 var owned_towers = []
 var disconnected = false
 var health = 10
@@ -25,6 +25,7 @@ var buildmenu = BuildMenu.instantiate()
 @onready var animation_tree : AnimationTree = $AnimationTree
 
 func _ready():
+	resources = Settings.starting_resources
 	animation_tree.active = true
 	$running_attack_sword.hide()
 	$attack_box.hide()

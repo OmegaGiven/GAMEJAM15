@@ -3,7 +3,7 @@ extends Node2D
 var Spirit = preload("res://scenes/Objects/Spirit.tscn")
 
 var wave_timer = 0.0
-var wave_interval = 20.0
+var wave_interval: float
 var wave_number = 0
 var game_over = false
 
@@ -12,7 +12,7 @@ func _ready():
 	SplitScreenFunctionality.add_splitscreen_to_scene()
 	$HBoxContainer/SubViewportContainer/PauseMenu.hide()
 
-	# Wire up signals after scene is fully built
+	wave_interval = Settings.wave_interval
 	call_deferred("_connect_signals")
 
 func _connect_signals():
