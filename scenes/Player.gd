@@ -35,13 +35,12 @@ var water_energy: float = 0.0
 var earth_energy: float = 0.0
 
 const CRAFT_TIME = 5.0
-var crafting: Dictionary = {}   # {build_type: time_remaining}
-var inventory: Dictionary = {}  # {build_type: count}
+const MAX_TOTEMS_PER_TYPE = 10
+var crafting_queues: Dictionary = {}  # {build_type: {count: int, timer: float}}
+var inventory: Dictionary = {}        # {build_type: count}
+var placed_totems: Dictionary = {}    # {build_type: count}
 
 func start_craft(build_type: String, wood: int, water: float = 0.0, earth: float = 0.0) -> bool:
-	if build_type in crafting:
-		print("Player %d: already crafting %s (%.0fs left)" % [device_num, build_type, crafting[build_type]])
-		return false
 	if resources < wood:
 		print("Player %d: need %d wood, have %d" % [device_num, wood, resources])
 		return false
@@ -54,8 +53,12 @@ func start_craft(build_type: String, wood: int, water: float = 0.0, earth: float
 	resources -= wood
 	water_energy -= water
 	earth_energy -= earth
-	crafting[build_type] = CRAFT_TIME
-	print("Player %d: crafting %s (%.0fs)..." % [device_num, build_type, CRAFT_TIME])
+	if build_type in crafting_queues:
+		crafting_queues[build_type]["count"] += 1
+		print("Player %d: queued %s (%d in queue)" % [device_num, build_type, crafting_queues[build_type]["count"]])
+	else:
+		crafting_queues[build_type] = {"count": 1, "timer": CRAFT_TIME}
+		print("Player %d: crafting %s..." % [device_num, build_type])
 	return true
 
 func consume_inventory(build_type: String) -> bool:
@@ -64,16 +67,31 @@ func consume_inventory(build_type: String) -> bool:
 	inventory[build_type] -= 1
 	return true
 
+func can_place_totem(build_type: String) -> bool:
+	return placed_totems.get(build_type, 0) < MAX_TOTEMS_PER_TYPE
+
+func on_totem_placed(build_type: String):
+	placed_totems[build_type] = placed_totems.get(build_type, 0) + 1
+
+func on_totem_removed(build_type: String):
+	placed_totems[build_type] = max(0, placed_totems.get(build_type, 0) - 1)
+
 func _tick_crafting(delta: float):
-	var completed: Array = []
-	for build_type in crafting:
-		crafting[build_type] -= delta
-		if crafting[build_type] <= 0.0:
-			completed.append(build_type)
-	for build_type in completed:
-		crafting.erase(build_type)
-		inventory[build_type] = inventory.get(build_type, 0) + 1
-		print("Player %d: %s ready to place!" % [device_num, build_type])
+	var to_remove: Array = []
+	for build_type in crafting_queues:
+		var q = crafting_queues[build_type]
+		q["timer"] -= delta
+		if q["timer"] <= 0.0:
+			inventory[build_type] = inventory.get(build_type, 0) + 1
+			q["count"] -= 1
+			if q["count"] > 0:
+				q["timer"] = CRAFT_TIME
+				print("Player %d: %s ready! (%d more in queue)" % [device_num, build_type, q["count"]])
+			else:
+				to_remove.append(build_type)
+				print("Player %d: %s ready!" % [device_num, build_type])
+	for build_type in to_remove:
+		crafting_queues.erase(build_type)
 
 func add_elemental_energy(element: String, amount: float):
 	match element:

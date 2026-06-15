@@ -97,6 +97,9 @@ func _on_top_earth_pressed():
 	_request_totem("earth", 20, 0.0, 10.0)
 
 func _request_totem(build_type: String, wood: int, water: float, earth: float):
+	if not player.can_place_totem(build_type):
+		print("P%d: %s cap (%d) reached — destroy one first" % [player.device_num, build_type, player.MAX_TOTEMS_PER_TYPE])
+		return
 	if player.consume_inventory(build_type):
 		_enter_placement(build_type)
 	else:

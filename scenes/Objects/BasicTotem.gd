@@ -31,11 +31,15 @@ func _input(event):
 			actually_placing = true
 
 func _try_place():
+	if not owner_player.can_place_totem(get_build_type()):
+		print("P%d: %s cap reached" % [owner_player.device_num, get_build_type()])
+		return
 	_place()
 
 func _place():
 	in_placement = false
 	owner_player.owned_towers.append(self)
+	owner_player.on_totem_placed(get_build_type())
 	self.set_collision_layer_value(7, true)
 	$Sprite2D.modulate = owner_player.player_color
 	_spawn_element_ball()
@@ -44,6 +48,10 @@ func _place():
 	])
 	if owner_build_menu:
 		owner_build_menu.on_totem_placed(get_build_type())
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE and not in_placement and owner_player != null:
+		owner_player.on_totem_removed(get_build_type())
 
 func _spawn_element_ball():
 	var elem_color = get_element_color()
